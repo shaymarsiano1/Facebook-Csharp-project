@@ -14,6 +14,9 @@ namespace BasicFacebookFeatures
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
+
+            //diagrams google doc file:
+            //https://docs.google.com/document/d/1L4EMBmyW2e9_dPKx9o-W3hXgG6Z8D0v9tqDiASlSCs0/edit?tab=t.0
         }
     }
 }
