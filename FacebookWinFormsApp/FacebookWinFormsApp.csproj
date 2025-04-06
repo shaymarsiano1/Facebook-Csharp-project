@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{905D5BF1-A7E4-4440-85E8-84772F5312D5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BasicFacebookFeatures</RootNamespace>
+    <AssemblyName>BasicFacebookFeatures</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Facebook">
+      <HintPath>..\FBApi\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="FbGraphApiWrapper">
+      <HintPath>..\FBApi\FbGraphApiWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlbumTemplateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AlbumTemplateControl.Designer.cs">
+      <DependentUpon>AlbumTemplateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="BasePanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BasePanelControl.Designer.cs">
+      <DependentUpon>BasePanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FriendFeedPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FriendFeedPanel.Designer.cs">
+      <DependentUpon>FriendFeedPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FriendsPanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FriendsPanelControl.Designer.cs">
+      <DependentUpon>FriendsPanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalPostControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PersonalPostControl.Designer.cs">
+      <DependentUpon>PersonalPostControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PostControl.Designer.cs">
+      <DependentUpon>PostControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserActivity.cs" />
+    <Compile Include="ProfilePanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProfilePanelControl.Designer.cs">
+      <DependentUpon>ProfilePanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFacebookApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFacebookApp.Designer.cs">
+      <DependentUpon>FormFacebookApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUserPreferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUserPreferences.Designer.cs">
+      <DependentUpon>FormUserPreferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NavigationPanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NavigationPanelControl.Designer.cs">
+      <DependentUpon>NavigationPanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlbumsPanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AlbumsPanelControl.Designer.cs">
+      <DependentUpon>AlbumsPanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserActivityPanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserActivityPanelControl.Designer.cs">
+      <DependentUpon>UserActivityPanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfoPanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInfoPanelControl.Designer.cs">
+      <DependentUpon>UserInfoPanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserPreferences.cs" />
+    <EmbeddedResource Include="AlbumTemplateControl.resx">
+      <DependentUpon>AlbumTemplateControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUserPreferences.resx">
+      <DependentUpon>FormUserPreferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalPostControl.resx">
+      <DependentUpon>PersonalPostControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfilePanelControl.resx">
+      <DependentUpon>ProfilePanelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFacebookApp.resx">
+      <DependentUpon>FormFacebookApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FriendFeedPanel.resx">
+      <DependentUpon>FriendFeedPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FriendsPanelControl.resx">
+      <DependentUpon>FriendsPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NavigationPanelControl.resx">
+      <DependentUpon>NavigationPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlbumsPanelControl.resx">
+      <DependentUpon>AlbumsPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PostControl.resx">
+      <DependentUpon>PostControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserActivityPanelControl.resx">
+      <DependentUpon>UserActivityPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInfoPanelControl.resx">
+      <DependentUpon>UserInfoPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CefSharp.WinForms">
+      <Version>87.1.132</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Properties\pics\Facebook_logo.svg.png" />
+    <None Include="Resources\profilepic.png" />
+    <None Include="Resources\Facebook_logo.svg.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
