@@ -11,14 +11,14 @@ namespace BasicFacebookFeatures
         public bool RememberUser { get; set; }
         public Size LastWindowSize { get; set; }
         public Point LastWindowLocation { get; set; }
-        public string lastUserAccessToken { get; set; }
+        public string LastUserAccessToken { get; set; }
 
         private ApplicationSettings()
         {
             LastWindowLocation=new Point(20,50);
             LastWindowSize=new Size(1000,500);
             RememberUser = false;
-            lastUserAccessToken = null;
+            LastUserAccessToken = null;
         }
 
         public void SaveSettingsToFile()
