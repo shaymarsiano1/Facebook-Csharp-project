@@ -27,11 +27,11 @@ namespace BasicFacebookFeatures
         {
             base.OnShown(e);
 
-            if (ApplicationSettings.RememberUser && string.IsNullOrEmpty(ApplicationSettings.lastUserAccessToken) == false) 
+            if (ApplicationSettings.RememberUser && string.IsNullOrEmpty(ApplicationSettings.LastUserAccessToken) == false) 
             {
                 try
                 {
-                    m_LoginResult = FacebookService.Connect(ApplicationSettings.lastUserAccessToken);
+                    m_LoginResult = FacebookService.Connect(ApplicationSettings.LastUserAccessToken);
 
                     if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage) == false) 
                     {
@@ -61,11 +61,11 @@ namespace BasicFacebookFeatures
 
             if (this.rememberMe.Checked == true) 
             {
-                ApplicationSettings.lastUserAccessToken = m_LoginResult.AccessToken;
+                ApplicationSettings.LastUserAccessToken = m_LoginResult.AccessToken;
             }
             else
             {
-                ApplicationSettings.lastUserAccessToken = null;
+                ApplicationSettings.LastUserAccessToken = null;
             }
 
             ApplicationSettings.SaveSettingsToFile();
