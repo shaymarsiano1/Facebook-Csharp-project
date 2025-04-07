@@ -91,9 +91,7 @@ namespace BasicFacebookFeatures
             "user_photos",
             "user_friends",
             "user_events",
-            "user_videos",
-            "pages_manage_posts"
-            );
+            "user_videos"            );
             string accessToken = m_LoginResult.AccessToken;
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage) == true) 

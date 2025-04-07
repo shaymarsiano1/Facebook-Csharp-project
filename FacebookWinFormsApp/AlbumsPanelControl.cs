@@ -109,9 +109,10 @@ namespace FacebookWinFormsApp
 
             backButton.Click += (s, e) => UpdateAlbums(); 
             photosPanel.Controls.Add(backButton);
-
+            Random rand = new Random();
             foreach (Photo photo in album.Photos)
             {
+                int likesNumber = photo.LikedBy.Count != 0 ? photo.LikedBy.Count : rand.Next(100); 
                 if (photo != null && !string.IsNullOrEmpty(photo.PictureNormalURL))
                 {
                     PictureBox pictureBox = new PictureBox
@@ -123,6 +124,40 @@ namespace FacebookWinFormsApp
                         ImageLocation = photo.PictureNormalURL
                     };
 
+                    Label likesLabel = new Label();
+                    likesLabel.Text = $"\u2661 {likesNumber}";
+                    bool wasLiked = false;
+                    likesLabel.ForeColor = Color.White;
+                    likesLabel.BackColor = Color.FromArgb(120, 0, 0, 0); // שחור שקוף
+                    likesLabel.Font = new Font("Segoe UI", 15);
+                    likesLabel.AutoSize = false;
+                    likesLabel.TextAlign = ContentAlignment.MiddleCenter;
+                    likesLabel.Dock = DockStyle.Bottom;
+                    likesLabel.Height = 30;
+                    likesLabel.Click += (s, e) =>
+                    {
+                        try
+                        {
+                            //if (likesLabel.Text.Contains("\u2665"))
+                            if(wasLiked)
+                            {
+                                wasLiked = false;
+                                likesLabel.Text = $"\u2661 {likesNumber}";
+                                photo.Unlike();
+                            }
+                            else
+                            {
+                                wasLiked = true;
+                                likesLabel.Text = $"\u2665 {likesNumber + 1}";
+                                photo.Like();     
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Doesn't support this function yet");
+                        }
+                    };
+                    pictureBox.Controls.Add(likesLabel);
                     photosPanel.Controls.Add(pictureBox);
                 }
             }
