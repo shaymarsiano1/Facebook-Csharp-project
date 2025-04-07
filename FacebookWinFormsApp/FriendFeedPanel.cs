@@ -11,20 +11,20 @@ namespace BasicFacebookFeatures
 {
     public partial class FriendFeedPanelControl : BasePanelControl
     {
-        List<PostControl> m_AllPosts;
+        private List<PostControl> AllPosts { get; set; }
 
         public FriendFeedPanelControl()
         {
             InitializeComponent();
-            m_AllPosts = new List<PostControl>();
+            AllPosts = new List<PostControl>();
         }
 
         public FriendFeedPanelControl(User i_LoggedInUser, UserActivity i_UserActivity)
         {
             InitializeComponent();
-            m_LoggedInUser = i_LoggedInUser;
-            m_UserActivity = i_UserActivity;
-            m_AllPosts = new List<PostControl>();
+            LoggedInUser = i_LoggedInUser;
+            UserActivity = i_UserActivity;
+            AllPosts = new List<PostControl>();
             if (DesignMode == false) 
             {
                 InitializeData();
@@ -48,8 +48,8 @@ namespace BasicFacebookFeatures
 
         private void loadData()
         {
-            m_AllPosts.Clear();
-            foreach (User friend in m_LoggedInUser.Friends)
+            AllPosts.Clear();
+            foreach (User friend in LoggedInUser.Friends)
             {
                 foreach (Post post in friend.Posts)
                 {
@@ -59,29 +59,29 @@ namespace BasicFacebookFeatures
 
                         newPost.Initialize(friend, post);
                         newPost.Dock = DockStyle.Top;
-                        m_AllPosts.Add(newPost);
+                        AllPosts.Add(newPost);
                     }
                 }
             }
 
-            foreach (Post post in m_LoggedInUser.Posts)
+            foreach (Post post in LoggedInUser.Posts)
             {
                 if (post != null && post.CreatedTime.HasValue)
                 {
                     PostControl newPost = new PostControl();
 
-                    newPost.Initialize(m_LoggedInUser, post);
+                    newPost.Initialize(LoggedInUser, post);
                     newPost.Dock = DockStyle.Top;
-                    m_AllPosts.Add(newPost);
+                    AllPosts.Add(newPost);
                 }
             }
 
             flowLayoutPanelFeed.Invoke(new Action(() =>
             {
                 flowLayoutPanelFeed.Controls.Clear();
-                m_AllPosts = m_AllPosts.OrderByDescending(postControl => postControl.Date).ToList();
+                AllPosts = AllPosts.OrderByDescending(postControl => postControl.Date).ToList();
 
-                foreach (PostControl postControl in m_AllPosts)
+                foreach (PostControl postControl in AllPosts)
                 {
                     flowLayoutPanelFeed.Controls.Add(postControl);
                 }

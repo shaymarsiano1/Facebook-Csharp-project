@@ -5,25 +5,25 @@ namespace FacebookWinFormsApp
 {
     public partial class FormUserPreferences : Form
     {
-        private UserPreferences m_UserPreferences;
+        private UserPreferences UserPreferences { get; set; }
 
         public FormUserPreferences(UserPreferences i_UserPreferences)
         {
             InitializeComponent();
-            m_UserPreferences = i_UserPreferences;
+            UserPreferences = i_UserPreferences;
             loadPreferences();
         }
 
         private void loadPreferences()
         {
-            checkBoxAutoRefresh.Checked = m_UserPreferences.AutoRefreshFeed;
-            numericUpDownRefreshInterval.Value = m_UserPreferences.RefreshInterval;
+            checkBoxAutoRefresh.Checked = UserPreferences.AutoRefreshFeed;
+            numericUpDownRefreshInterval.Value = UserPreferences.RefreshInterval;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            m_UserPreferences.AutoRefreshFeed = checkBoxAutoRefresh.Checked;
-            m_UserPreferences.RefreshInterval = (int)numericUpDownRefreshInterval.Value;
+            UserPreferences.AutoRefreshFeed = checkBoxAutoRefresh.Checked;
+            UserPreferences.RefreshInterval = (int)numericUpDownRefreshInterval.Value;
             DialogResult = DialogResult.OK;
             Close();
         }

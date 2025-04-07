@@ -24,20 +24,20 @@ namespace BasicFacebookFeatures
         {
             if (userActivity == null) return;
 
-            m_UserActivity = userActivity;
-            labelPhotosCount.Text = $"Photos viewed: {m_UserActivity.PhotoViewCount}";
-            labelFriendsCount.Text = $"Friends list visits: {m_UserActivity.FriendsVisitCount}";
-            labelFeedCount.Text = $"Feed visits: {m_UserActivity.FeedVisitCount}";
-            labelPostCount.Text = $"Personal Posts visits: {m_UserActivity.PostsVisitCount}";
+            UserActivity = userActivity;
+            labelPhotosCount.Text = $"Photos viewed: {UserActivity.PhotoViewCount}";
+            labelFriendsCount.Text = $"Friends list visits: {UserActivity.FriendsVisitCount}";
+            labelFeedCount.Text = $"Feed visits: {UserActivity.FeedVisitCount}";
+            labelPostCount.Text = $"Personal Posts visits: {UserActivity.PostsVisitCount}";
             updateDuration(); 
             m_Timer.Start();
         }
 
         private void updateDuration()
         {
-            if (m_UserActivity != null)
+            if (UserActivity != null)
             {
-                TimeSpan duration = DateTime.Now - m_UserActivity.SessionStartTime;
+                TimeSpan duration = DateTime.Now - UserActivity.SessionStartTime;
                 labelSessionDuration.Text = $"Session time: {duration:hh\\:mm\\:ss}";
             }
         }

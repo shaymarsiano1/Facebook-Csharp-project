@@ -5,28 +5,29 @@ using BasicFacebookFeatures;
 using FacebookWrapper;
 using Timer = System.Windows.Forms.Timer;
 using FacebookWrapper.ObjectModel;
+using System.Security.Cryptography;
 
 namespace FacebookWinFormsApp
 {
     public partial class FacebookApp : Form
     {
-        private readonly LoginResult r_LoginResult;
-        private readonly User r_LoggedInUser;
-        private readonly UserPreferences r_UserPreferences;
-        private readonly UserActivity r_UserActivity;
-        private Timer m_RefreshTimer;
-        private Dictionary<string, Control> m_Panels = new Dictionary<string, Control>();
+        private LoginResult LoginResult { get; }
+        private User LoggedInUser { get;}
+        private UserPreferences UserPreferences { get; }
+        private UserActivity UserActivity { get; }
+        private Timer RefreshTimer { get; set; }
+        private Dictionary<string, Control> Panels { get; set; } = new Dictionary<string, Control>();
 
         public FacebookApp(User i_LoginUser)
         {
-            r_LoggedInUser = i_LoginUser;
-            r_UserPreferences = new UserPreferences();
-            r_UserActivity = new UserActivity();
+            LoggedInUser = i_LoginUser;
+            UserPreferences = new UserPreferences();
+            UserActivity = new UserActivity();
             InitializeComponent();
-            m_RefreshTimer = new Timer();
-            m_RefreshTimer.Tick += refreshTimer_Tick;
+            RefreshTimer = new Timer();
+            RefreshTimer.Tick += refreshTimer_Tick;
             applyUserPreferences();
-            userInfoPanelControl21.LoadUserInfo(r_LoggedInUser);
+            userInfoPanelControl21.LoadUserInfo(LoggedInUser);
             navigationPanelControl.ProfileButtonClicked += navigationPanel_ProfileButtonClicked;
             navigationPanelControl.PhotosButtonClicked += navigationPanel_PhotosButtonClicked;
             navigationPanelControl.SettingsButtonClicked += navigationPanel_SettingsButtonClicked;
@@ -38,14 +39,14 @@ namespace FacebookWinFormsApp
 
         public FacebookApp(LoginResult i_LoginResult)
         {
-            r_LoginResult = i_LoginResult;
-            r_LoggedInUser = i_LoginResult.LoggedInUser;
-            r_UserPreferences = new UserPreferences();
-            r_UserActivity = new UserActivity();
+            LoginResult = i_LoginResult;
+            LoggedInUser = i_LoginResult.LoggedInUser;
+            UserPreferences = new UserPreferences();
+            UserActivity = new UserActivity();
             InitializeComponent();
-            m_RefreshTimer = new Timer();
+            RefreshTimer = new Timer();
             applyUserPreferences();
-            userInfoPanelControl21.LoadUserInfo(r_LoggedInUser);
+            userInfoPanelControl21.LoadUserInfo(LoggedInUser);
             navigationPanelControl.ProfileButtonClicked += navigationPanel_ProfileButtonClicked;
             navigationPanelControl.PhotosButtonClicked += navigationPanel_PhotosButtonClicked;
             navigationPanelControl.SettingsButtonClicked += navigationPanel_SettingsButtonClicked;
@@ -63,14 +64,14 @@ namespace FacebookWinFormsApp
         {
             basePanel.Controls.Clear();
             AlbumsPanelControl photosPanelControl;
-            if (m_Panels.ContainsKey("PhotosPanel") == false)
+            if (Panels.ContainsKey("PhotosPanel") == false)
             {
-                photosPanelControl = new AlbumsPanelControl(r_LoggedInUser, r_UserActivity);
-                m_Panels["PhotosPanel"] = photosPanelControl;
+                photosPanelControl = new AlbumsPanelControl(LoggedInUser, UserActivity);
+                Panels["PhotosPanel"] = photosPanelControl;
             }
             else
             {
-                photosPanelControl = m_Panels["PhotosPanel"] as AlbumsPanelControl;
+                photosPanelControl = Panels["PhotosPanel"] as AlbumsPanelControl;
                 photosPanelControl.InitializeData();
             }
             basePanel.Controls.Add(photosPanelControl);
@@ -78,19 +79,20 @@ namespace FacebookWinFormsApp
         
         private void navigationPanel_SettingsButtonClicked(object sender, EventArgs e)
         {
-            FormUserPreferences preferencesForm = new FormUserPreferences(r_UserPreferences);
+            FormUserPreferences preferencesForm = new FormUserPreferences(UserPreferences);
             if (preferencesForm.ShowDialog() == DialogResult.OK)
             {
                 applyUserPreferences();
             }
+            createpost();
         }
 
         private void navigationPanel_FriendsButtonClicked(object sender, EventArgs e)
         {
-            r_UserActivity.FriendsVisitCount++;
+            UserActivity.FriendsVisitCount++;
             basePanel.Controls.Clear();
             FriendsPanelControl friendsPanel = new FriendsPanelControl();
-            friendsPanel.UpdateFriends(r_LoggedInUser);
+            friendsPanel.UpdateFriends(LoggedInUser);
             basePanel.Controls.Add(friendsPanel);
         }
 
@@ -98,17 +100,17 @@ namespace FacebookWinFormsApp
         {
             basePanel.Controls.Clear();
             basePanel.Controls.Clear();
-            r_UserActivity.FeedVisitCount++;
+            UserActivity.FeedVisitCount++;
             FriendFeedPanelControl friendFeedPanel;
 
-            if (m_Panels.ContainsKey("FriendFeed") == false)
+            if (Panels.ContainsKey("FriendFeed") == false)
             {
-                friendFeedPanel = new FriendFeedPanelControl(r_LoggedInUser, r_UserActivity);
-                m_Panels["FriendFeed"] = friendFeedPanel;
+                friendFeedPanel = new FriendFeedPanelControl(LoggedInUser, UserActivity);
+                Panels["FriendFeed"] = friendFeedPanel;
             }
             else
             {
-                friendFeedPanel = m_Panels["FriendFeed"] as FriendFeedPanelControl;
+                friendFeedPanel = Panels["FriendFeed"] as FriendFeedPanelControl;
                 friendFeedPanel.InitializeData();
             }
             basePanel.Controls.Add(friendFeedPanel);
@@ -117,20 +119,20 @@ namespace FacebookWinFormsApp
         private void showProfile()
         {
             basePanel.Controls.Clear();
-            ProfilePanelControl profilePanel = new ProfilePanelControl(r_LoggedInUser, r_UserActivity);
+            ProfilePanelControl profilePanel = new ProfilePanelControl(LoggedInUser, UserActivity);
             basePanel.Controls.Add(profilePanel);
         }
 
         private void applyUserPreferences()
         {
-            if (r_UserPreferences.AutoRefreshFeed)
+            if (UserPreferences.AutoRefreshFeed)
             {
-                m_RefreshTimer.Interval = r_UserPreferences.RefreshInterval * 1000; 
-                m_RefreshTimer.Start();
+                RefreshTimer.Interval = UserPreferences.RefreshInterval * 1000; 
+                RefreshTimer.Start();
             }
             else
             {
-                m_RefreshTimer.Stop();
+                RefreshTimer.Stop();
             }
 
         }
@@ -139,21 +141,21 @@ namespace FacebookWinFormsApp
         {
             try
             {
-                r_LoggedInUser.ReFetch();
+                LoggedInUser.ReFetch();
 
-                if (m_Panels.ContainsKey("FriendFeed") && m_Panels["FriendFeed"].Visible)
+                if (Panels.ContainsKey("FriendFeed") && Panels["FriendFeed"].Visible)
                 {
-                    ((FriendFeedPanelControl)m_Panels["FriendFeed"]).InitializeData();
+                    ((FriendFeedPanelControl)Panels["FriendFeed"]).InitializeData();
                 }
-                else if (m_Panels.ContainsKey("PhotosPanel") && m_Panels["PhotosPanel"].Visible)
+                else if (Panels.ContainsKey("PhotosPanel") && Panels["PhotosPanel"].Visible)
                 {
-                    ((AlbumsPanelControl)m_Panels["PhotosPanel"]).InitializeData();
+                    ((AlbumsPanelControl)Panels["PhotosPanel"]).InitializeData();
                 }
             }
             catch (Facebook.FacebookOAuthException ex)
             {
                 MessageBox.Show("Session expired. Please login again.");
-                m_RefreshTimer.Stop();
+                RefreshTimer.Stop();
             }
             catch (Exception ex)
             {
@@ -164,6 +166,11 @@ namespace FacebookWinFormsApp
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
+        }
+
+        public void createpost()
+        {
+            LoggedInUser.PostStatus("english");
         }
     }
 }

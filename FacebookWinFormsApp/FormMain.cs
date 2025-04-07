@@ -8,28 +8,30 @@ namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
-        private ApplicationSettings m_ApplicationSettings;
+        private ApplicationSettings ApplicationSettings { get; set; }
+
         public FormMain()
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
-            m_ApplicationSettings = ApplicationSettings.LoadSettingFromFile();
-            this.Size = m_ApplicationSettings.LastWindowSize;
-            this.Location = m_ApplicationSettings.LastWindowLocation;
-            this.rememberMe.Checked = m_ApplicationSettings.RememberUser;
+            ApplicationSettings = ApplicationSettings.LoadSettingFromFile();
+            this.Size = ApplicationSettings.LastWindowSize;
+            this.Location = ApplicationSettings.LastWindowLocation;
+            this.rememberMe.Checked = ApplicationSettings.RememberUser;
 
         }
+
         FacebookWrapper.LoginResult m_LoginResult;
 
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
 
-            if (m_ApplicationSettings.RememberUser && string.IsNullOrEmpty(m_ApplicationSettings.lastUserAccessToken) == false) 
+            if (ApplicationSettings.RememberUser && string.IsNullOrEmpty(ApplicationSettings.lastUserAccessToken) == false) 
             {
                 try
                 {
-                    m_LoginResult = FacebookService.Connect(m_ApplicationSettings.lastUserAccessToken);
+                    m_LoginResult = FacebookService.Connect(ApplicationSettings.lastUserAccessToken);
 
                     if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage) == false) 
                     {
@@ -38,8 +40,8 @@ namespace BasicFacebookFeatures
                     }
 
                     FacebookApp facebookApp = new FacebookApp(m_LoginResult);
-                    this.Location = m_ApplicationSettings.LastWindowLocation;
-                    this.Size = m_ApplicationSettings.LastWindowSize;
+                    this.Location = ApplicationSettings.LastWindowLocation;
+                    this.Size = ApplicationSettings.LastWindowSize;
                     
                     facebookApp.Show();
                 }
@@ -53,20 +55,20 @@ namespace BasicFacebookFeatures
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-            m_ApplicationSettings.LastWindowSize = this.Size;
-            m_ApplicationSettings.LastWindowLocation = this.Location;
-            m_ApplicationSettings.RememberUser = this.rememberMe.Checked;
+            ApplicationSettings.LastWindowSize = this.Size;
+            ApplicationSettings.LastWindowLocation = this.Location;
+            ApplicationSettings.RememberUser = this.rememberMe.Checked;
 
             if (this.rememberMe.Checked == true) 
             {
-                m_ApplicationSettings.lastUserAccessToken = m_LoginResult.AccessToken;
+                ApplicationSettings.lastUserAccessToken = m_LoginResult.AccessToken;
             }
             else
             {
-                m_ApplicationSettings.lastUserAccessToken = null;
+                ApplicationSettings.lastUserAccessToken = null;
             }
 
-            m_ApplicationSettings.SaveSettingsToFile();
+            ApplicationSettings.SaveSettingsToFile();
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -89,7 +91,8 @@ namespace BasicFacebookFeatures
             "user_photos",
             "user_friends",
             "user_events",
-            "user_videos"
+            "user_videos",
+            "pages_manage_posts"
             );
             string accessToken = m_LoginResult.AccessToken;
 

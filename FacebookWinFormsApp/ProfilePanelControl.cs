@@ -9,8 +9,8 @@ namespace FacebookWinFormsApp
         public ProfilePanelControl(User i_LoggedInUser, UserActivity i_UserActivity)
         {
             InitializeComponent();
-            m_LoggedInUser = i_LoggedInUser;
-            m_UserActivity = i_UserActivity;
+            LoggedInUser = i_LoggedInUser;
+            UserActivity = i_UserActivity;
             LoadUserProfile(i_LoggedInUser);
         }
 
@@ -25,16 +25,16 @@ namespace FacebookWinFormsApp
         {
             flowLayoutPanelProfile.Controls.Clear();
             UserActivityPanelControl activityPanel = new UserActivityPanelControl();
-            activityPanel.SetContext(m_LoggedInUser, m_UserActivity, m_UserPreferences);
-            activityPanel.LoadUserActivity(m_UserActivity);
+            activityPanel.SetContext(LoggedInUser, UserActivity, UserPreferences);
+            activityPanel.LoadUserActivity(UserActivity);
             flowLayoutPanelProfile.Controls.Add(activityPanel);
         }
 
         private void profilePostsBtn_Click(object sender, EventArgs e)
         {
             flowLayoutPanelProfile.Controls.Clear();
-            m_UserActivity.PostsVisitCount++;
-            foreach (Post post in m_LoggedInUser.Posts)
+            UserActivity.PostsVisitCount++;
+            foreach (Post post in LoggedInUser.Posts)
             {
                 if (post != null && string.IsNullOrEmpty(post.PictureURL) && post.Message != null)
                 {
@@ -48,13 +48,13 @@ namespace FacebookWinFormsApp
         protected virtual void ProfilePicturesBtn_Click(object sender, EventArgs e)
         {
             flowLayoutPanelProfile.Controls.Clear();
-            m_UserActivity.PhotoViewCount++;
-            foreach (Post post in m_LoggedInUser.Posts)
+            UserActivity.PhotoViewCount++;
+            foreach (Post post in LoggedInUser.Posts)
             {
                 if (post.PictureURL != null)   
                 {
                     PostControl picturePost = new PostControl();
-                    picturePost.Initialize(m_LoggedInUser,post);
+                    picturePost.Initialize(LoggedInUser,post);
                     picturePost.AutoSize = true;
                     flowLayoutPanelProfile.Controls.Add(picturePost);
                 }

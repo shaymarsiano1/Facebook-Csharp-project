@@ -7,19 +7,18 @@ namespace BasicFacebookFeatures
     public partial class BasePanelControl : UserControl
         // This class supposed to be an Abstruct class, the designer blocked that option
     {
-        protected User m_LoggedInUser;
-        protected UserActivity m_UserActivity;
-        private static DateTime s_LastRefetched = DateTime.Now;
-        protected UserPreferences m_UserPreferences;
-
+        protected User LoggedInUser { get; set; }
+        protected UserActivity UserActivity { get; set; }
+        private static DateTime LastRefetched { get; set; } = DateTime.Now;
+        protected UserPreferences UserPreferences { get; set; }
         private DateTime LastRefreshed { get; set; }
         private static Object s_Lock = new Object();
 
         public void SetContext(User i_User, UserActivity i_Activity,UserPreferences i_UserPreferences)
         {
-            m_LoggedInUser = i_User;
-            m_UserActivity = i_Activity;
-            m_UserPreferences = i_UserPreferences;
+            LoggedInUser = i_User;
+            UserActivity = i_Activity;
+            UserPreferences = i_UserPreferences;
         }
 
         protected bool RefetchIfNeeded()
@@ -28,18 +27,18 @@ namespace BasicFacebookFeatures
 
             lock (s_Lock)
             {
-                int refreshInterval = m_UserPreferences?.RefreshInterval ?? 60;
-                if ((DateTime.Now - s_LastRefetched).TotalSeconds > refreshInterval)
+                int refreshInterval = UserPreferences?.RefreshInterval ?? 60;
+                if ((DateTime.Now - LastRefetched).TotalSeconds > refreshInterval)
                 {
                     try
                     {
-                        m_LoggedInUser.ReFetch();
+                        LoggedInUser.ReFetch();
                     }
                     catch (Exception)
                     {
                         MessageBox.Show("Failed to ReFetch data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    s_LastRefetched = DateTime.Now;
+                    LastRefetched = DateTime.Now;
                     didRefetch = true;
                 }
             }

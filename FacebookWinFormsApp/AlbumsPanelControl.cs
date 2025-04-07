@@ -12,8 +12,8 @@ namespace FacebookWinFormsApp
         public AlbumsPanelControl(User i_LoggedInUser, UserActivity i_UserActivity)
         {
             InitializeComponent();
-            m_LoggedInUser = i_LoggedInUser;
-            m_UserActivity = i_UserActivity;
+            LoggedInUser = i_LoggedInUser;
+            UserActivity = i_UserActivity;
             InitializeData();
         }
 
@@ -46,9 +46,9 @@ namespace FacebookWinFormsApp
 
             try
             {
-                m_UserActivity.PhotoViewCount++;
+                UserActivity.PhotoViewCount++;
 
-                if (m_LoggedInUser.Albums == null || m_LoggedInUser.Albums.Count == 0)
+                if (LoggedInUser.Albums == null || LoggedInUser.Albums.Count == 0)
                 {
                     Label noAlbumsLabel = new Label
                     {
@@ -60,7 +60,7 @@ namespace FacebookWinFormsApp
                     return;
                 }
 
-                foreach (Album album in m_LoggedInUser.Albums)
+                foreach (Album album in LoggedInUser.Albums)
                 {
                     if (album != null)
                     {
