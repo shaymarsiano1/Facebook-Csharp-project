@@ -14,6 +14,11 @@ namespace BasicFacebookFeatures
         private DateTime LastRefreshed { get; set; }
         private static Object s_Lock = new Object();
 
+        public BasePanelControl()
+        {
+            InitializeComponent();
+        }
+
         public void SetContext(User i_User, UserActivity i_Activity,UserPreferences i_UserPreferences)
         {
             LoggedInUser = i_User;
