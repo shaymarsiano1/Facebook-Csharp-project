@@ -166,7 +166,5 @@ namespace FacebookWinFormsApp
         {
             base.OnFormClosing(e);
         }
-
-    
     }
 }
