@@ -84,7 +84,6 @@ namespace FacebookWinFormsApp
             {
                 applyUserPreferences();
             }
-            createpost();
         }
 
         private void navigationPanel_FriendsButtonClicked(object sender, EventArgs e)
@@ -168,9 +167,6 @@ namespace FacebookWinFormsApp
             base.OnFormClosing(e);
         }
 
-        public void createpost()
-        {
-            LoggedInUser.PostStatus("english");
-        }
+    
     }
 }
