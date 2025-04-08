@@ -64,9 +64,9 @@
             this.loginToFriendLabel.Font = new System.Drawing.Font("Impact", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.loginToFriendLabel.Location = new System.Drawing.Point(3, 0);
             this.loginToFriendLabel.Name = "loginToFriendLabel";
-            this.loginToFriendLabel.Size = new System.Drawing.Size(312, 24);
+            this.loginToFriendLabel.Size = new System.Drawing.Size(340, 24);
             this.loginToFriendLabel.TabIndex = 1;
-            this.loginToFriendLabel.Text = "Double click to login your friend";
+            this.loginToFriendLabel.Text = "Double click to login as your friend";
             // 
             // FriendsPanelControl
             // 
