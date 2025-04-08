@@ -31,7 +31,7 @@ namespace FacebookWinFormsApp
             }
             catch
             {
-                MessageBox.Show("Posting is not available at that moment, sorry");
+                MessageBox.Show("Posting is not available at this moment...");
             }
 
         }
