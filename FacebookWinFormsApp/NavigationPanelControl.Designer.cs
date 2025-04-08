@@ -47,7 +47,7 @@
             this.buttonProfile.TabIndex = 0;
             this.buttonProfile.Text = "Profile";
             this.buttonProfile.UseVisualStyleBackColor = false;
-            this.buttonProfile.Click += new System.EventHandler(this.OnbuttonProfileClick);
+            this.buttonProfile.Click += new System.EventHandler(this.OnButtonProfileClick);
             // 
             // buttonPhotos
             // 
@@ -105,12 +105,13 @@
             this.buttonFriendFeed.Name = "buttonFriendFeed";
             this.buttonFriendFeed.Size = new System.Drawing.Size(150, 32);
             this.buttonFriendFeed.TabIndex = 4;
-            this.buttonFriendFeed.Text = "Friends Feed";
+            this.buttonFriendFeed.Text = "Feed";
             this.buttonFriendFeed.UseVisualStyleBackColor = false;
             this.buttonFriendFeed.Click += new System.EventHandler(this.OnButtonFriendsFeedClick);
             // 
             // NavigationPanelControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Controls.Add(this.buttonFriendFeed);
             this.Controls.Add(this.buttonFriends);
             this.Controls.Add(this.buttonSettings);

@@ -30,7 +30,7 @@ namespace BasicFacebookFeatures
         {
             bool didRefetch = false;
 
-            lock (s_Lock)
+            lock (s_Lock) 
             {
                 int refreshInterval = UserPreferences?.RefreshInterval ?? 60;
                 if ((DateTime.Now - LastRefetched).TotalSeconds > refreshInterval)

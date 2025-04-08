@@ -18,7 +18,7 @@ namespace BasicFacebookFeatures
             {
                 listBoxFriends.Items.Clear();
                 listBoxFriends.DisplayMember = "Name";
-                listBoxFriends.Click += ListBoxFriends_Click;
+                listBoxFriends.Click += listBoxFriends_Click;
                 foreach (User friend in i_LoggedInUser.Friends)
                 {
                     listBoxFriends.Items.Add(friend);
@@ -31,7 +31,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        protected virtual void ListBoxFriends_Click(object sender, EventArgs e)
+        private void listBoxFriends_Click(object sender, EventArgs e)
         {
             User selectedFriend = listBoxFriends.SelectedItem as User;
 

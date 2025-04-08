@@ -10,10 +10,8 @@ namespace BasicFacebookFeatures
         private User Owner { get; set; }
         private Post Post { get; set; }
         public DateTime Date { get { return Post.CreatedTime.Value; } }
-
-        private bool m_IsImageEnlarged = false;
-
-        private Rectangle m_OriginalBounds;
+        private bool m_IsImageEnlarged { get; set; } = false;
+        private Rectangle m_OriginalBounds { get; set; }
 
         public PostControl()
         {
@@ -41,7 +39,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        protected virtual void postPicture_Click(object sender, EventArgs e)
+        private void postPicture_Click(object sender, EventArgs e)
         {
             if (m_IsImageEnlarged == false)
             {

@@ -36,7 +36,6 @@ namespace FacebookWinFormsApp
 
         public void UpdateAlbums()
         {
-
             FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
@@ -47,7 +46,6 @@ namespace FacebookWinFormsApp
             try
             {
                 UserActivity.PhotoViewCount++;
-
                 if (LoggedInUser.Albums == null || LoggedInUser.Albums.Count == 0)
                 {
                     Label noAlbumsLabel = new Label
@@ -57,6 +55,7 @@ namespace FacebookWinFormsApp
                         Margin = new Padding(10)
                     };
                     flowLayoutPanel.Controls.Add(noAlbumsLabel);
+
                     return;
                 }
 
@@ -91,7 +90,7 @@ namespace FacebookWinFormsApp
             }));
         }
 
-        private void showAlbumPhotos(Album album)
+        private void showAlbumPhotos(Album i_Album)
         {
             Controls.Clear();
 
@@ -107,13 +106,14 @@ namespace FacebookWinFormsApp
                 Margin = new Padding(10)
             };
 
-            backButton.Click += (s, e) => UpdateAlbums(); 
+            backButton.Click += (s, e) => UpdateAlbums();
             photosPanel.Controls.Add(backButton);
             Random rand = new Random();
-            foreach (Photo photo in album.Photos)
+            foreach (Photo photo in i_Album.Photos) 
             {
-                int likesNumber = photo.LikedBy.Count != 0 ? photo.LikedBy.Count : rand.Next(100); 
-                if (photo != null && !string.IsNullOrEmpty(photo.PictureNormalURL))
+                int likesNumber = photo.LikedBy.Count != 0 ? photo.LikedBy.Count : rand.Next(100);
+
+                if (photo != null && string.IsNullOrEmpty(photo.PictureNormalURL) == false) 
                 {
                     PictureBox pictureBox = new PictureBox
                     {
@@ -123,23 +123,22 @@ namespace FacebookWinFormsApp
                         Margin = new Padding(5),
                         ImageLocation = photo.PictureNormalURL
                     };
-
                     Label likesLabel = new Label();
                     likesLabel.Text = $"\u2661 {likesNumber}";
                     bool wasLiked = false;
                     likesLabel.ForeColor = Color.White;
-                    likesLabel.BackColor = Color.FromArgb(120, 0, 0, 0); // שחור שקוף
+                    likesLabel.BackColor = Color.FromArgb(120, 0, 0, 0); 
                     likesLabel.Font = new Font("Segoe UI", 15);
                     likesLabel.AutoSize = false;
                     likesLabel.TextAlign = ContentAlignment.MiddleCenter;
                     likesLabel.Dock = DockStyle.Bottom;
                     likesLabel.Height = 30;
+
                     likesLabel.Click += (s, e) =>
                     {
                         try
                         {
-                            //if (likesLabel.Text.Contains("\u2665"))
-                            if(wasLiked)
+                            if (wasLiked == true) 
                             {
                                 wasLiked = false;
                                 likesLabel.Text = $"\u2661 {likesNumber}";
@@ -157,11 +156,11 @@ namespace FacebookWinFormsApp
                             MessageBox.Show($"Doesn't support this function yet");
                         }
                     };
+
                     pictureBox.Controls.Add(likesLabel);
                     photosPanel.Controls.Add(pictureBox);
                 }
             }
-
             Controls.Add(photosPanel);
         }
     }

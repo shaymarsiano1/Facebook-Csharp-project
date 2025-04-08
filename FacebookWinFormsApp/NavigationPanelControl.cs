@@ -16,7 +16,7 @@ namespace FacebookWinFormsApp
             InitializeComponent();
         }
 
-        protected virtual void OnbuttonProfileClick(object sender, EventArgs e)
+        protected virtual void OnButtonProfileClick(object sender, EventArgs e)
         {
             ProfileButtonClicked?.Invoke(this, EventArgs.Empty);
         }

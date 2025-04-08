@@ -12,7 +12,7 @@ namespace BasicFacebookFeatures
         public AlbumTemplateControl()
         {
             InitializeComponent();
-            albumCover.Click += AlbumCover_Click;
+            albumCover.Click += OnAlbumCoverClick;
         }
 
         public void SetAlbum(Album i_Album)
@@ -31,7 +31,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        protected virtual void AlbumCover_Click(object sender, EventArgs e)
+        protected virtual void OnAlbumCoverClick(object sender, EventArgs e)
         {
             AlbumClicked?.Invoke(this, EventArgs.Empty);
         }

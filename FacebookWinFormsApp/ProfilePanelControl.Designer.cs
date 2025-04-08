@@ -34,15 +34,18 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.ProfileTitle = new System.Windows.Forms.Label();
             this.profileActivityBtn = new System.Windows.Forms.Button();
+            this.postSomethingButton = new System.Windows.Forms.Button();
+            this.PostSomethingTextBox = new System.Windows.Forms.TextBox();
+            this.postSomethingLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanelProfile.SuspendLayout();
             this.SuspendLayout();
             // 
             // profilePostBtn
             // 
             this.profilePostBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.profilePostBtn.Location = new System.Drawing.Point(330, 60);
+            this.profilePostBtn.Location = new System.Drawing.Point(322, 63);
             this.profilePostBtn.Name = "profilePostBtn";
-            this.profilePostBtn.Size = new System.Drawing.Size(102, 33);
+            this.profilePostBtn.Size = new System.Drawing.Size(92, 33);
             this.profilePostBtn.TabIndex = 2;
             this.profilePostBtn.Text = "Posts";
             this.profilePostBtn.UseVisualStyleBackColor = true;
@@ -50,9 +53,9 @@
             // profilePicturesBtn
             // 
             this.profilePicturesBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.profilePicturesBtn.Location = new System.Drawing.Point(206, 60);
+            this.profilePicturesBtn.Location = new System.Drawing.Point(212, 63);
             this.profilePicturesBtn.Name = "profilePicturesBtn";
-            this.profilePicturesBtn.Size = new System.Drawing.Size(102, 33);
+            this.profilePicturesBtn.Size = new System.Drawing.Size(92, 33);
             this.profilePicturesBtn.TabIndex = 3;
             this.profilePicturesBtn.Text = "Pictures";
             this.profilePicturesBtn.UseVisualStyleBackColor = true;
@@ -78,7 +81,7 @@
             this.ProfileTitle.AutoSize = true;
             this.ProfileTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.ProfileTitle.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ProfileTitle.Location = new System.Drawing.Point(201, 24);
+            this.ProfileTitle.Location = new System.Drawing.Point(16, 14);
             this.ProfileTitle.Name = "ProfileTitle";
             this.ProfileTitle.Size = new System.Drawing.Size(118, 25);
             this.ProfileTitle.TabIndex = 1;
@@ -87,15 +90,44 @@
             // profileActivityBtn
             // 
             this.profileActivityBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.profileActivityBtn.Location = new System.Drawing.Point(81, 60);
+            this.profileActivityBtn.Location = new System.Drawing.Point(103, 63);
             this.profileActivityBtn.Name = "profileActivityBtn";
-            this.profileActivityBtn.Size = new System.Drawing.Size(102, 33);
+            this.profileActivityBtn.Size = new System.Drawing.Size(92, 33);
             this.profileActivityBtn.TabIndex = 6;
             this.profileActivityBtn.Text = "Activy";
             this.profileActivityBtn.UseVisualStyleBackColor = true;
             // 
+            // postSomethingButton
+            // 
+            this.postSomethingButton.Location = new System.Drawing.Point(461, 12);
+            this.postSomethingButton.Name = "postSomethingButton";
+            this.postSomethingButton.Size = new System.Drawing.Size(72, 22);
+            this.postSomethingButton.TabIndex = 10;
+            this.postSomethingButton.Text = "Post";
+            this.postSomethingButton.UseVisualStyleBackColor = true;
+            // 
+            // PostSomethingTextBox
+            // 
+            this.PostSomethingTextBox.Location = new System.Drawing.Point(292, 13);
+            this.PostSomethingTextBox.Name = "PostSomethingTextBox";
+            this.PostSomethingTextBox.Size = new System.Drawing.Size(164, 20);
+            this.PostSomethingTextBox.TabIndex = 9;
+            // 
+            // postSomethingLabel
+            // 
+            this.postSomethingLabel.AutoSize = true;
+            this.postSomethingLabel.Location = new System.Drawing.Point(204, 15);
+            this.postSomethingLabel.Name = "postSomethingLabel";
+            this.postSomethingLabel.Size = new System.Drawing.Size(81, 13);
+            this.postSomethingLabel.TabIndex = 8;
+            this.postSomethingLabel.Text = "Post Something";
+            // 
             // ProfilePanelControl
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Controls.Add(this.postSomethingButton);
+            this.Controls.Add(this.PostSomethingTextBox);
+            this.Controls.Add(this.postSomethingLabel);
             this.Controls.Add(this.profileActivityBtn);
             this.Controls.Add(this.flowLayoutPanelProfile);
             this.Controls.Add(this.profilePicturesBtn);
@@ -116,5 +148,8 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label ProfileTitle;
         private System.Windows.Forms.Button profileActivityBtn;
+        private System.Windows.Forms.Button postSomethingButton;
+        private System.Windows.Forms.TextBox PostSomethingTextBox;
+        private System.Windows.Forms.Label postSomethingLabel;
     }
 }

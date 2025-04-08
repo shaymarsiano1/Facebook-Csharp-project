@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using BasicFacebookFeatures;
 using FacebookWrapper.ObjectModel;
 
@@ -16,9 +17,23 @@ namespace FacebookWinFormsApp
 
         public void LoadUserProfile(User i_LoggedInUser)
         {
-            profilePicturesBtn.Click += ProfilePicturesBtn_Click;
+            profilePicturesBtn.Click += profilePicturesBtn_Click;
             profilePostBtn.Click += profilePostsBtn_Click;
             profileActivityBtn.Click += profileActivityBtn_Click;
+            postSomethingButton.Click += postSomethingButton_Click;
+        }
+
+        private void postSomethingButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoggedInUser.PostStatus(PostSomethingTextBox.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Posting is not available at that moment, sorry");
+            }
+
         }
 
         private void profileActivityBtn_Click(object sender, EventArgs e)
@@ -45,7 +60,7 @@ namespace FacebookWinFormsApp
             }
         }
 
-        protected virtual void ProfilePicturesBtn_Click(object sender, EventArgs e)
+        private void profilePicturesBtn_Click(object sender, EventArgs e)
         {
             flowLayoutPanelProfile.Controls.Clear();
             UserActivity.PhotoViewCount++;

@@ -161,10 +161,5 @@ namespace FacebookWinFormsApp
                 Console.WriteLine("Auto-refresh failed: " + ex.Message);
             }
         }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-        }
     }
 }
