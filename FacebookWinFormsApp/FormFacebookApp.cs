@@ -5,7 +5,6 @@ using BasicFacebookFeatures;
 using FacebookWrapper;
 using Timer = System.Windows.Forms.Timer;
 using FacebookWrapper.ObjectModel;
-using System.Security.Cryptography;
 
 namespace FacebookWinFormsApp
 {
