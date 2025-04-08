@@ -18,7 +18,7 @@ namespace BasicFacebookFeatures
             {
                 listBoxFriends.Items.Clear();
                 listBoxFriends.DisplayMember = "Name";
-                listBoxFriends.Click += listBoxFriends_Click;
+                listBoxFriends.MouseDoubleClick += listBoxFriends_Click;
                 foreach (User friend in i_LoggedInUser.Friends)
                 {
                     listBoxFriends.Items.Add(friend);
@@ -33,12 +33,19 @@ namespace BasicFacebookFeatures
 
         private void listBoxFriends_Click(object sender, EventArgs e)
         {
-            User selectedFriend = listBoxFriends.SelectedItem as User;
-
-            if (selectedFriend != null)
+            try
             {
-                FacebookApp facebookApp = new FacebookApp(selectedFriend);
-                facebookApp.Show();
+                User selectedFriend = listBoxFriends.SelectedItem as User;
+
+                if (selectedFriend != null)
+                {
+                    FacebookApp facebookApp = new FacebookApp(selectedFriend);
+                    facebookApp.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error login to friend profile: {ex.Message}");
             }
         }
     }
