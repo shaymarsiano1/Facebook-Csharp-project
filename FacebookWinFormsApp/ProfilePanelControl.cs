@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using BasicFacebookFeatures;
 using FacebookWrapper.ObjectModel;
+using System.Collections.Generic;
+
 
 namespace FacebookWinFormsApp
 {
@@ -49,31 +52,65 @@ namespace FacebookWinFormsApp
         {
             flowLayoutPanelProfile.Controls.Clear();
             UserActivity.PostsVisitCount++;
-            foreach (Post post in LoggedInUser.Posts)
+
+            Thread thread = new Thread(() =>
             {
-                if (post != null && string.IsNullOrEmpty(post.PictureURL) && post.Message != null)
+                List<PersonalPostControl> postControls = new List<PersonalPostControl>();
+
+                foreach (Post post in LoggedInUser.Posts)
                 {
-                    PersonalPostControl postControl = new PersonalPostControl();
-                    postControl.SetPost(post);
-                    flowLayoutPanelProfile.Controls.Add(postControl);
+                    if (post != null && string.IsNullOrEmpty(post.PictureURL) && post.Message != null)
+                    {
+                        PersonalPostControl postControl = new PersonalPostControl();
+                        postControl.SetPost(post);
+                        postControls.Add(postControl);
+                    }
                 }
-            }
+
+                flowLayoutPanelProfile.Invoke(new Action(() =>
+                {
+                    flowLayoutPanelProfile.Controls.Clear();
+                    foreach (var control in postControls)
+                    {
+                        flowLayoutPanelProfile.Controls.Add(control);
+                    }
+                }));
+            });
+
+            thread.Start();
         }
 
         private void profilePicturesBtn_Click(object sender, EventArgs e)
         {
             flowLayoutPanelProfile.Controls.Clear();
             UserActivity.PhotoViewCount++;
-            foreach (Post post in LoggedInUser.Posts)
+
+            Thread thread = new Thread(() =>
             {
-                if (post.PictureURL != null)   
+                List<PostControl> pictureControls = new List<PostControl>();
+
+                foreach (Post post in LoggedInUser.Posts)
                 {
-                    PostControl picturePost = new PostControl();
-                    picturePost.Initialize(LoggedInUser,post);
-                    picturePost.AutoSize = true;
-                    flowLayoutPanelProfile.Controls.Add(picturePost);
+                    if (post.PictureURL != null)
+                    {
+                        PostControl picturePost = new PostControl();
+                        picturePost.Initialize(LoggedInUser, post);
+                        picturePost.AutoSize = true;
+                        pictureControls.Add(picturePost);
+                    }
                 }
-            }
+
+                flowLayoutPanelProfile.Invoke(new Action(() =>
+                {
+                    flowLayoutPanelProfile.Controls.Clear();
+                    foreach (var control in pictureControls)
+                    {
+                        flowLayoutPanelProfile.Controls.Add(control);
+                    }
+                }));
+            });
+
+            thread.Start();
         }
     }
 }

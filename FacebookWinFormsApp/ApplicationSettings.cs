@@ -37,7 +37,7 @@ namespace BasicFacebookFeatures
             ApplicationSettings settings = new ApplicationSettings();
             string path = Path.Combine(Application.StartupPath, "AppSettings.xml");
 
-            if (File.Exists(path))
+            if (File.Exists(path) == true) 
             {
                 try
                 {

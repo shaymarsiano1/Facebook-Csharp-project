@@ -102,6 +102,7 @@
     <Compile Include="FriendsPanelControl.Designer.cs">
       <DependentUpon>FriendsPanelControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PanelFactory.cs" />
     <Compile Include="PersonalPostControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
