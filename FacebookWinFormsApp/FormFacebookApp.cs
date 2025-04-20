@@ -66,12 +66,12 @@ namespace FacebookWinFormsApp
                 UserActivity.FeedVisitCount++;
                 feedPanel.InitializeData();
             }
-            else if(panel is FriendsPanelControl friendsPanel)
+            else if (panel is FriendsPanelControl friendsPanel)
             {
                 UserActivity.FriendsVisitCount++;
                 friendsPanel.InitializeData();
             }
-            else if(panel is ProfilePanelControl profilePanel)
+            else if (panel is ProfilePanelControl profilePanel)
             {
                 profilePanel.InitializeData();
             }
@@ -79,6 +79,7 @@ namespace FacebookWinFormsApp
             {
                 throw new Exception("no such panel exists");
             }
+
             basePanel.Controls.Clear();
             basePanel.Controls.Add(panel);
         }

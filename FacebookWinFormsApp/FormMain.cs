@@ -20,7 +20,6 @@ namespace BasicFacebookFeatures
             this.rememberMe.Checked = ApplicationSettings.RememberUser;
 
         }
-
         FacebookWrapper.LoginResult m_LoginResult;
 
         protected override void OnShown(EventArgs e)

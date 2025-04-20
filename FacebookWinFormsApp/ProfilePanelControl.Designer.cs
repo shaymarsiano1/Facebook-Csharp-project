@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.profilePostBtn = new System.Windows.Forms.Button();
             this.profilePicturesBtn = new System.Windows.Forms.Button();
             this.ProfileTitle = new System.Windows.Forms.Label();
@@ -38,9 +37,7 @@
             this.postSomethingLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelProfile = new System.Windows.Forms.FlowLayoutPanel();
-            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanelProfile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // profilePostBtn
@@ -126,10 +123,6 @@
             this.flowLayoutPanelProfile.Size = new System.Drawing.Size(536, 248);
             this.flowLayoutPanelProfile.TabIndex = 5;
             // 
-            // postBindingSource
-            // 
-            this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
-            // 
             // ProfilePanelControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -144,7 +137,6 @@
             this.Name = "ProfilePanelControl";
             this.Size = new System.Drawing.Size(536, 350);
             this.flowLayoutPanelProfile.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +152,5 @@
         private System.Windows.Forms.Label postSomethingLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelProfile;
-        private System.Windows.Forms.BindingSource postBindingSource;
     }
 }

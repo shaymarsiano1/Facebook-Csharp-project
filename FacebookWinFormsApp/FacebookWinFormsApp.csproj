@@ -90,6 +90,12 @@
     <Compile Include="BasePanelControl.Designer.cs">
       <DependentUpon>BasePanelControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="chcek.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chcek.Designer.cs">
+      <DependentUpon>chcek.cs</DependentUpon>
+    </Compile>
     <Compile Include="FriendFeedPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     <EmbeddedResource Include="AlbumTemplateControl.resx">
       <DependentUpon>AlbumTemplateControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="chcek.resx">
+      <DependentUpon>chcek.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormUserPreferences.resx">
       <DependentUpon>FormUserPreferences.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,7 +227,7 @@
     <EmbeddedResource Include="UserInfoPanelControl.resx">
       <DependentUpon>UserInfoPanelControl.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Event.datasource" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Post.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

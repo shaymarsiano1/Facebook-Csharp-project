@@ -50,32 +50,32 @@ namespace FacebookWinFormsApp
 
         private void profilePostsBtn_Click(object sender, EventArgs e)
         {
-            //flowLayoutPanelProfile.Controls.Clear();
+            flowLayoutPanelProfile.Controls.Clear();
             UserActivity.PostsVisitCount++;
-            postBindingSource.DataSource = LoggedInUser.Posts;
-            //Thread thread = new Thread(() =>
-            //{
-                //foreach (Post post in LoggedInUser.Posts)
-                //{
-                //    if (post != null && string.IsNullOrEmpty(post.PictureURL) && post.Message != null)
-                //    {
-                //        PersonalPostControl postControl = new PersonalPostControl();
-                //        postControl.SetPost(post);
-                //        postControls.Add(postControl);
-                //    }
-                //}
+            Thread thread = new Thread(() =>
+            {
+                List<PersonalPostControl> postControls = new List<PersonalPostControl>();
+                foreach (Post post in LoggedInUser.Posts)
+                {
+                    if (post != null && string.IsNullOrEmpty(post.PictureURL) && post.Message != null)
+                    {
+                        PersonalPostControl postControl = new PersonalPostControl();
+                        postControl.SetPost(post);
+                        postControls.Add(postControl);
+                    }
+                }
 
-                //flowLayoutPanelProfile.Invoke(new Action(() =>
-                //{
-                //    flowLayoutPanelProfile.Controls.Clear();
-                //    foreach (var control in postControls)
-                //    {
-                //        flowLayoutPanelProfile.Controls.Add(control);
-                //    }
-            //    //}));
-            //});
+                flowLayoutPanelProfile.Invoke(new Action(() =>
+                {
+                    flowLayoutPanelProfile.Controls.Clear();
+                    foreach (var control in postControls)
+                    {
+                        flowLayoutPanelProfile.Controls.Add(control);
+                    }
+                }));
+            });
 
-            //thread.Start();
+            thread.Start();
 
         }
 
