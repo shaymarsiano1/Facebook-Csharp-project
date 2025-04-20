@@ -28,11 +28,9 @@ namespace FacebookWinFormsApp
             RefreshTimer.Tick += refreshTimer_Tick;
             applyUserPreferences();
             userInfoPanelControl21.LoadUserInfo(LoggedInUser);
-            navigationPanelControl.ProfileButtonClicked += navigationPanel_ProfileButtonClicked;
-            navigationPanelControl.PhotosButtonClicked += navigationPanel_PhotosButtonClicked;
+            navigationPanelControl.PanelButtonClicked += handlePanelButtonClicked;
             navigationPanelControl.SettingsButtonClicked += navigationPanel_SettingsButtonClicked;
-            navigationPanelControl.FriendsButtonClicked += navigationPanel_FriendsButtonClicked;
-            navigationPanelControl.FriendFeedButtonClicked += navigationPanel_FriendFeedButtonClicked;
+
 
             showProfile();
         }
@@ -47,27 +45,42 @@ namespace FacebookWinFormsApp
             RefreshTimer = new Timer();
             applyUserPreferences();
             userInfoPanelControl21.LoadUserInfo(LoggedInUser);
-            navigationPanelControl.ProfileButtonClicked += navigationPanel_ProfileButtonClicked;
-            navigationPanelControl.PhotosButtonClicked += navigationPanel_PhotosButtonClicked;
+            navigationPanelControl.PanelButtonClicked += handlePanelButtonClicked;
             navigationPanelControl.SettingsButtonClicked += navigationPanel_SettingsButtonClicked;
-            navigationPanelControl.FriendsButtonClicked += navigationPanel_FriendsButtonClicked;
-            navigationPanelControl.FriendFeedButtonClicked += navigationPanel_FriendFeedButtonClicked;
+
+
             showProfile();
         }
 
-        private void navigationPanel_ProfileButtonClicked(object sender, EventArgs e)
+        private void handlePanelButtonClicked(object sender, PanelEventArgs e)
         {
-            showProfile();
-        }
+            BasePanelControl panel = PanelFactory.CreatePanel(e.PanelType, LoggedInUser, UserActivity, Panels);
 
-        private void navigationPanel_PhotosButtonClicked(object sender, EventArgs e)
-        {
-            AlbumsPanelControl photosPanelControl =
-                PanelFactory.CreatePanel(ePanelType.Photos, LoggedInUser, UserActivity, Panels) as AlbumsPanelControl;
-
-            photosPanelControl.InitializeData();
+            if (panel is AlbumsPanelControl albumsPanel)
+            {
+                UserActivity.PhotoViewCount++;
+                albumsPanel.InitializeData();
+            }
+            else if (panel is FriendFeedPanelControl feedPanel)
+            {
+                UserActivity.FeedVisitCount++;
+                feedPanel.InitializeData();
+            }
+            else if(panel is FriendsPanelControl friendsPanel)
+            {
+                UserActivity.FriendsVisitCount++;
+                friendsPanel.InitializeData();
+            }
+            else if(panel is ProfilePanelControl profilePanel)
+            {
+                profilePanel.InitializeData();
+            }
+            else
+            {
+                throw new Exception("no such panel exists");
+            }
             basePanel.Controls.Clear();
-            basePanel.Controls.Add(photosPanelControl);
+            basePanel.Controls.Add(panel);
         }
 
         private void navigationPanel_SettingsButtonClicked(object sender, EventArgs e)
@@ -77,32 +90,10 @@ namespace FacebookWinFormsApp
             {
                 applyUserPreferences();
             }
+           
+
         }
-
-        private void navigationPanel_FriendsButtonClicked(object sender, EventArgs e)
-        {
-            UserActivity.FriendsVisitCount++;
-
-            FriendsPanelControl friendsPanel =
-                PanelFactory.CreatePanel(ePanelType.Friends, LoggedInUser, UserActivity, Panels) as FriendsPanelControl;
-
-            basePanel.Controls.Clear();
-            basePanel.Controls.Add(friendsPanel);
-        }
-
-
-        private void navigationPanel_FriendFeedButtonClicked(object sender, EventArgs e)
-        {
-            UserActivity.FeedVisitCount++;
-
-            FriendFeedPanelControl friendFeedPanel =
-                PanelFactory.CreatePanel(ePanelType.FriendFeed, LoggedInUser, UserActivity, Panels) as FriendFeedPanelControl;
-
-            friendFeedPanel.InitializeData();
-            basePanel.Controls.Clear();
-            basePanel.Controls.Add(friendFeedPanel);
-        }
-
+       
         private void showProfile()
         {
             ProfilePanelControl profilePanel = PanelFactory.CreatePanel(ePanelType.Profile, LoggedInUser, UserActivity, Panels) as ProfilePanelControl;
@@ -110,7 +101,6 @@ namespace FacebookWinFormsApp
             basePanel.Controls.Clear();
             basePanel.Controls.Add(profilePanel);
         }
-
 
         private void applyUserPreferences()
         {

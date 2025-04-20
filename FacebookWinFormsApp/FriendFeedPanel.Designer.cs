@@ -39,7 +39,7 @@
             this.flowLayoutPanelFeed.AutoScroll = true;
             this.flowLayoutPanelFeed.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanelFeed.Name = "flowLayoutPanelFeed";
-            this.flowLayoutPanelFeed.Size = new System.Drawing.Size(520, 310);
+            this.flowLayoutPanelFeed.Size = new System.Drawing.Size(515, 310);
             this.flowLayoutPanelFeed.TabIndex = 0;
             // 
             // label1

@@ -5,13 +5,13 @@ using BasicFacebookFeatures;
 
 namespace FacebookWinFormsApp
 {
-    public enum ePanelType
-    {
-        Profile,
-        Photos,
-        FriendFeed,
-        Friends
-    }
+//    public enum ePanelType
+//    {
+//        Profile,
+//        Photos,
+//        FriendFeed,
+//        Friends
+//    }
 
     public static class PanelFactory
     {

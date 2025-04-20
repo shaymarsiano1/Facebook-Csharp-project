@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.profilePostBtn = new System.Windows.Forms.Button();
             this.profilePicturesBtn = new System.Windows.Forms.Button();
-            this.flowLayoutPanelProfile = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.ProfileTitle = new System.Windows.Forms.Label();
             this.profileActivityBtn = new System.Windows.Forms.Button();
             this.postSomethingButton = new System.Windows.Forms.Button();
             this.PostSomethingTextBox = new System.Windows.Forms.TextBox();
             this.postSomethingLabel = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelProfile = new System.Windows.Forms.FlowLayoutPanel();
+            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanelProfile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // profilePostBtn
@@ -60,28 +63,12 @@
             this.profilePicturesBtn.Text = "Pictures";
             this.profilePicturesBtn.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanelProfile
-            // 
-            this.flowLayoutPanelProfile.AutoScroll = true;
-            this.flowLayoutPanelProfile.Controls.Add(this.flowLayoutPanel2);
-            this.flowLayoutPanelProfile.Location = new System.Drawing.Point(0, 102);
-            this.flowLayoutPanelProfile.Name = "flowLayoutPanelProfile";
-            this.flowLayoutPanelProfile.Size = new System.Drawing.Size(536, 248);
-            this.flowLayoutPanelProfile.TabIndex = 5;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(12, 8);
-            this.flowLayoutPanel2.TabIndex = 0;
-            // 
             // ProfileTitle
             // 
             this.ProfileTitle.AutoSize = true;
             this.ProfileTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.ProfileTitle.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ProfileTitle.Location = new System.Drawing.Point(16, 14);
+            this.ProfileTitle.Location = new System.Drawing.Point(16, 13);
             this.ProfileTitle.Name = "ProfileTitle";
             this.ProfileTitle.Size = new System.Drawing.Size(118, 25);
             this.ProfileTitle.TabIndex = 1;
@@ -99,7 +86,7 @@
             // 
             // postSomethingButton
             // 
-            this.postSomethingButton.Location = new System.Drawing.Point(461, 12);
+            this.postSomethingButton.Location = new System.Drawing.Point(461, 16);
             this.postSomethingButton.Name = "postSomethingButton";
             this.postSomethingButton.Size = new System.Drawing.Size(72, 22);
             this.postSomethingButton.TabIndex = 10;
@@ -108,7 +95,7 @@
             // 
             // PostSomethingTextBox
             // 
-            this.PostSomethingTextBox.Location = new System.Drawing.Point(292, 13);
+            this.PostSomethingTextBox.Location = new System.Drawing.Point(292, 17);
             this.PostSomethingTextBox.Name = "PostSomethingTextBox";
             this.PostSomethingTextBox.Size = new System.Drawing.Size(164, 20);
             this.PostSomethingTextBox.TabIndex = 9;
@@ -116,11 +103,32 @@
             // postSomethingLabel
             // 
             this.postSomethingLabel.AutoSize = true;
-            this.postSomethingLabel.Location = new System.Drawing.Point(204, 15);
+            this.postSomethingLabel.Location = new System.Drawing.Point(204, 19);
             this.postSomethingLabel.Name = "postSomethingLabel";
-            this.postSomethingLabel.Size = new System.Drawing.Size(81, 13);
+            this.postSomethingLabel.Size = new System.Drawing.Size(84, 13);
             this.postSomethingLabel.TabIndex = 8;
-            this.postSomethingLabel.Text = "Post Something";
+            this.postSomethingLabel.Text = "Post Something:";
+            this.postSomethingLabel.Click += new System.EventHandler(this.postSomethingLabel_Click);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(12, 8);
+            this.flowLayoutPanel2.TabIndex = 0;
+            // 
+            // flowLayoutPanelProfile
+            // 
+            this.flowLayoutPanelProfile.AutoScroll = true;
+            this.flowLayoutPanelProfile.Controls.Add(this.flowLayoutPanel2);
+            this.flowLayoutPanelProfile.Location = new System.Drawing.Point(0, 102);
+            this.flowLayoutPanelProfile.Name = "flowLayoutPanelProfile";
+            this.flowLayoutPanelProfile.Size = new System.Drawing.Size(536, 248);
+            this.flowLayoutPanelProfile.TabIndex = 5;
+            // 
+            // postBindingSource
+            // 
+            this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
             // 
             // ProfilePanelControl
             // 
@@ -136,6 +144,7 @@
             this.Name = "ProfilePanelControl";
             this.Size = new System.Drawing.Size(536, 350);
             this.flowLayoutPanelProfile.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,12 +153,13 @@
         #endregion
         private System.Windows.Forms.Button profilePostBtn;
         private System.Windows.Forms.Button profilePicturesBtn;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelProfile;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label ProfileTitle;
         private System.Windows.Forms.Button profileActivityBtn;
         private System.Windows.Forms.Button postSomethingButton;
         private System.Windows.Forms.TextBox PostSomethingTextBox;
         private System.Windows.Forms.Label postSomethingLabel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelProfile;
+        private System.Windows.Forms.BindingSource postBindingSource;
     }
 }

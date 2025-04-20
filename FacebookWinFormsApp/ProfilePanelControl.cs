@@ -50,34 +50,33 @@ namespace FacebookWinFormsApp
 
         private void profilePostsBtn_Click(object sender, EventArgs e)
         {
-            flowLayoutPanelProfile.Controls.Clear();
+            //flowLayoutPanelProfile.Controls.Clear();
             UserActivity.PostsVisitCount++;
+            postBindingSource.DataSource = LoggedInUser.Posts;
+            //Thread thread = new Thread(() =>
+            //{
+                //foreach (Post post in LoggedInUser.Posts)
+                //{
+                //    if (post != null && string.IsNullOrEmpty(post.PictureURL) && post.Message != null)
+                //    {
+                //        PersonalPostControl postControl = new PersonalPostControl();
+                //        postControl.SetPost(post);
+                //        postControls.Add(postControl);
+                //    }
+                //}
 
-            Thread thread = new Thread(() =>
-            {
-                List<PersonalPostControl> postControls = new List<PersonalPostControl>();
+                //flowLayoutPanelProfile.Invoke(new Action(() =>
+                //{
+                //    flowLayoutPanelProfile.Controls.Clear();
+                //    foreach (var control in postControls)
+                //    {
+                //        flowLayoutPanelProfile.Controls.Add(control);
+                //    }
+            //    //}));
+            //});
 
-                foreach (Post post in LoggedInUser.Posts)
-                {
-                    if (post != null && string.IsNullOrEmpty(post.PictureURL) && post.Message != null)
-                    {
-                        PersonalPostControl postControl = new PersonalPostControl();
-                        postControl.SetPost(post);
-                        postControls.Add(postControl);
-                    }
-                }
+            //thread.Start();
 
-                flowLayoutPanelProfile.Invoke(new Action(() =>
-                {
-                    flowLayoutPanelProfile.Controls.Clear();
-                    foreach (var control in postControls)
-                    {
-                        flowLayoutPanelProfile.Controls.Add(control);
-                    }
-                }));
-            });
-
-            thread.Start();
         }
 
         private void profilePicturesBtn_Click(object sender, EventArgs e)
@@ -111,6 +110,11 @@ namespace FacebookWinFormsApp
             });
 
             thread.Start();
+        }
+
+        private void postSomethingLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

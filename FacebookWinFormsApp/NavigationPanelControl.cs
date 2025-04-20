@@ -5,11 +5,8 @@ namespace FacebookWinFormsApp
 {
     public partial class NavigationPanelControl : BasePanelControl
     {
-        public event EventHandler ProfileButtonClicked;
-        public event EventHandler PhotosButtonClicked;
+        public event EventHandler<PanelEventArgs> PanelButtonClicked;
         public event EventHandler SettingsButtonClicked;
-        public event EventHandler FriendsButtonClicked;
-        public event EventHandler FriendFeedButtonClicked;
 
         public NavigationPanelControl()
         {
@@ -18,12 +15,12 @@ namespace FacebookWinFormsApp
 
         protected virtual void OnButtonProfileClick(object sender, EventArgs e)
         {
-            ProfileButtonClicked?.Invoke(this, EventArgs.Empty);
+            PanelButtonClicked?.Invoke(this, new PanelEventArgs(ePanelType.Profile));
         }
 
         protected virtual void OnButtonPhotosClick(object sender, EventArgs e)
         {
-            PhotosButtonClicked?.Invoke(this, EventArgs.Empty);
+            PanelButtonClicked?.Invoke(this, new PanelEventArgs(ePanelType.Photos));
         }
 
         protected virtual void OnButtonSettingsClick(object sender, EventArgs e)
@@ -33,12 +30,12 @@ namespace FacebookWinFormsApp
 
         protected virtual void OnButtonFriendsClick(object sender, EventArgs e)
         {
-            FriendsButtonClicked?.Invoke(this, EventArgs.Empty);
+            PanelButtonClicked?.Invoke(this, new PanelEventArgs(ePanelType.Friends));
         }
 
         protected virtual void OnButtonFriendsFeedClick(object sender, EventArgs e)
         {
-            FriendFeedButtonClicked?.Invoke(this, EventArgs.Empty);
+            PanelButtonClicked?.Invoke(this, new PanelEventArgs(ePanelType.FriendFeed));
         }
     }
 }
