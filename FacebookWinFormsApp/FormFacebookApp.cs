@@ -22,7 +22,7 @@ namespace FacebookWinFormsApp
         {
             LoggedInUser = i_LoginUser;
             UserPreferences = new UserPreferences();
-            UserActivity = new UserActivity();
+            UserActivity = UserActivity.Instance;
             InitializeComponent();
             RefreshTimer = new Timer();
             RefreshTimer.Tick += refreshTimer_Tick;
@@ -40,7 +40,7 @@ namespace FacebookWinFormsApp
             LoginResult = i_LoginResult;
             LoggedInUser = i_LoginResult.LoggedInUser;
             UserPreferences = new UserPreferences();
-            UserActivity = new UserActivity();
+            UserActivity = UserActivity.Instance;
             InitializeComponent();
             RefreshTimer = new Timer();
             applyUserPreferences();
