@@ -14,7 +14,7 @@ public class UserActivity
 
     public DateTime SessionStartTime { get; private set; }
 
-    private UserActivity() // שלב 3
+    private UserActivity() 
     {
         SessionStartTime = DateTime.Now;
     }
