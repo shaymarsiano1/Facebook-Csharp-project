@@ -53,7 +53,6 @@ namespace FacebookWinFormsApp
             this.profilePicturesBtn = new System.Windows.Forms.Button();
             this.profilePostBtn = new System.Windows.Forms.Button();
             this.ProfileTitle = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             createdTimeLabel = new System.Windows.Forms.Label();
             messageLabel = new System.Windows.Forms.Label();
             pictureURLLabel = new System.Windows.Forms.Label();
@@ -267,11 +266,6 @@ namespace FacebookWinFormsApp
             this.ProfileTitle.TabIndex = 1;
             this.ProfileTitle.Text = "My Profile";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // ProfilePanelControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -319,6 +313,5 @@ namespace FacebookWinFormsApp
         private Button talkPostBtn;
         private Button happyPostBtn;
         private Button sadPostBtn;
-        private ContextMenuStrip contextMenuStrip1;
     }
 }

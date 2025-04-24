@@ -6,6 +6,8 @@ using FacebookWrapper.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
+using BasicFacebookFeatures.Properties;
+using System.Security.Cryptography;
 
 
 namespace FacebookWinFormsApp
@@ -144,9 +146,11 @@ namespace FacebookWinFormsApp
             if (sender is Button btn)
             {
                 string message = btn.Text.Trim();
-                m_PostsList.Add(new SimplePost { Message = message, PictureURL = null, CreatedTime = DateTime.Now });
+                string pic = @"C:\Users\shaym\OneDrive\שולחן העבודה\.Net Design Patterns\B25 Ex01 ShayMarsiano 318605342 SaharAviad 314685843\FacebookWinFormsApp\Resources\"
+             + message + ".png";
+                m_PostsList.Add(new SimplePost { Message = message, PictureURL = pic, CreatedTime = DateTime.Now });
             }
         }
-
+        
     }
 }
