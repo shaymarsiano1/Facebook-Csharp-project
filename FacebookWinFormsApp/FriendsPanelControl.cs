@@ -40,7 +40,7 @@ namespace BasicFacebookFeatures
                 if (selectedFriend != null)
                 {
                     FacebookApp facebookApp = new FacebookApp(selectedFriend);
-                    facebookApp.Show();
+                    ownerObjectBindingSource.DataSource = selectedFriend;
                 }
             }
             catch (Exception ex)

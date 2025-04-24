@@ -123,6 +123,7 @@
     <Compile Include="PostControl.Designer.cs">
       <DependentUpon>PostControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimplePost.cs" />
     <Compile Include="UserActivity.cs" />
     <Compile Include="ProfilePanelControl.cs">
       <SubType>UserControl</SubType>
@@ -228,6 +229,7 @@
       <DependentUpon>UserInfoPanelControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Event.datasource" />
+    <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.OwnerObject.datasource" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Post.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
