@@ -252,9 +252,15 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\pics\Facebook_logo.svg.png" />
-    <Content Include="Resources\I%27m Happy!.png" />
-    <Content Include="Resources\I%27m Sad...png" />
-    <Content Include="Resources\Need To Talk, Text Me.png" />
+    <Content Include="Resources\I%27m Happy!.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\I%27m Sad...png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Need To Talk, Text Me.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\profilepic.png" />
     <None Include="Resources\Facebook_logo.svg.png" />
   </ItemGroup>
