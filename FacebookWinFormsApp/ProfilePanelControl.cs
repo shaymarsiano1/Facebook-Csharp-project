@@ -62,6 +62,9 @@ namespace FacebookWinFormsApp
         private void profilePostsBtn_Click(object sender, EventArgs e)
         {
             UserActivity.PostsVisitCount++;
+            IPost postFetcher = new FacebookPostAdapter(LoggedInUser);
+            List<Post> posts = postFetcher.fetchPosts();            
+
             foreach (var post in LoggedInUser.Posts.Where(p => p != null && !string.IsNullOrEmpty(p.Message)))
             {
                 m_PostsList.Add(new SimplePost{Message = post.Message,PictureURL = post.PictureURL,CreatedTime = post.CreatedTime ?? DateTime.Now});
