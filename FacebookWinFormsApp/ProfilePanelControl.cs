@@ -8,6 +8,9 @@ using System.Linq;
 using System.ComponentModel;
 using BasicFacebookFeatures.Properties;
 using System.Security.Cryptography;
+using System.IO;
+using System.Xml.Serialization;
+using System.Runtime.InteropServices.ComTypes;
 
 
 namespace FacebookWinFormsApp
@@ -151,6 +154,75 @@ namespace FacebookWinFormsApp
                 m_PostsList.Add(new SimplePost { Message = message, PictureURL = pic, CreatedTime = DateTime.Now });
             }
         }
-        
+        [Serializable]
+        [XmlRoot("Post")]
+        public class SerializablePost
+        {
+            [XmlAttribute("Type")]
+            public Post.eType postType { get; set; }
+            [XmlElement("Message")]
+            public string message { get; set; }
+
+            public string Creator { get; set; }
+            public DateTime CreatedTime { get; set; }
+            public string PhotoURL { get; set; }
+
+            public SerializablePost() { }
+
+            public SerializablePost(Post external)
+            {
+                postType = external.Type.Value;
+                message = external.Message;
+                CreatedTime = external.CreatedTime.Value;
+                Creator = external.From?.Name ?? "NONE";
+                PhotoURL = external.PictureURL;
+
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (LoggedInUser.Posts == null || LoggedInUser.Posts.Count == 0)
+            {
+                MessageBox.Show("No posts to save.");
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*",
+                Title = "Save Posts",
+                FileName = "MyPosts.xml"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    List<SerializablePost> serializablePosts = LoggedInUser.Posts
+                        .Select(post => new SerializablePost(post))
+                        .ToList();
+
+                    foreach (User friend in LoggedInUser.Friends)
+                    {
+                        serializablePosts.AddRange(friend.Posts
+                            .Select(post => new SerializablePost(post)));
+                    }
+
+                    using (Stream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                    {
+                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<SerializablePost>));
+                        xmlSerializer.Serialize(stream, serializablePosts);
+                    }
+
+                    MessageBox.Show("User activity saved successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving user activity: {ex.Message}");
+                }
+            }
+        }
+
     }
 }

@@ -56,10 +56,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Facebook">
-      <HintPath>..\FBApi\Facebook.dll</HintPath>
+      <HintPath>..\..\..\..\FBApi\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="FbGraphApiWrapper">
-      <HintPath>..\FBApi\FbGraphApiWrapper.dll</HintPath>
+      <HintPath>..\..\..\..\FBApi\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
@@ -190,6 +190,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProfilePanelControl.resx">
       <DependentUpon>ProfilePanelControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFacebookApp.resx">
       <DependentUpon>FormFacebookApp.cs</DependentUpon>
