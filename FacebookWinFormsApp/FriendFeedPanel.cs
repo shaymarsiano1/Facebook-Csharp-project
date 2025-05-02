@@ -25,12 +25,12 @@ namespace BasicFacebookFeatures
             LoggedInUser = i_LoggedInUser;
             UserActivity = i_UserActivity;
             AllPosts = new List<PostControl>();
-            if (DesignMode == false) 
+            if (DesignMode == false)
             {
                 InitializeData();
             }
         }
-        
+
         public override void InitializeData()
         {
             base.InitializeData();
@@ -49,9 +49,14 @@ namespace BasicFacebookFeatures
         private void loadData()
         {
             AllPosts.Clear();
+            List<Post> posts = new List<Post>();
+            IPost postFetcher = null;
             foreach (User friend in LoggedInUser.Friends)
             {
-                foreach (Post post in friend.Posts)
+                postFetcher = new FacebookPostAdapter(friend);
+                posts = postFetcher.fetchPosts();
+
+                foreach (Post post in posts)
                 {
                     if (post != null && post.CreatedTime.HasValue)
                     {
@@ -63,8 +68,9 @@ namespace BasicFacebookFeatures
                     }
                 }
             }
-
-            foreach (Post post in LoggedInUser.Posts)
+            postFetcher = new FacebookPostAdapter(LoggedInUser);
+            posts = postFetcher.fetchPosts();
+            foreach (Post post in posts)
             {
                 if (post != null && post.CreatedTime.HasValue)
                 {
@@ -78,7 +84,7 @@ namespace BasicFacebookFeatures
 
             flowLayoutPanelFeed.Invoke(new Action(() =>
             {
-                flowLayoutPanelFeed.Controls.Clear();
+               flowLayoutPanelFeed.Controls.Clear();
                 AllPosts = AllPosts.OrderByDescending(postControl => postControl.Date).ToList();
 
                 foreach (PostControl postControl in AllPosts)
@@ -86,6 +92,7 @@ namespace BasicFacebookFeatures
                     flowLayoutPanelFeed.Controls.Add(postControl);
                 }
             }));
+
         }
     }
 }

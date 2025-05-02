@@ -90,12 +90,7 @@
     <Compile Include="BasePanelControl.Designer.cs">
       <DependentUpon>BasePanelControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="chcek.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="chcek.Designer.cs">
-      <DependentUpon>chcek.cs</DependentUpon>
-    </Compile>
+    <Compile Include="FacebookPostAdapter.cs" />
     <Compile Include="FriendFeedPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,6 +103,7 @@
     <Compile Include="FriendsPanelControl.Designer.cs">
       <DependentUpon>FriendsPanelControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="IPost.cs" />
     <Compile Include="PanelEventArgs.cs" />
     <Compile Include="PanelFactory.cs" />
     <Compile Include="PanelTypes.cs" />
@@ -178,9 +174,6 @@
     <Compile Include="UserPreferences.cs" />
     <EmbeddedResource Include="AlbumTemplateControl.resx">
       <DependentUpon>AlbumTemplateControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="chcek.resx">
-      <DependentUpon>chcek.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserPreferences.resx">
       <DependentUpon>FormUserPreferences.cs</DependentUpon>
@@ -253,9 +246,15 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\pics\Facebook_logo.svg.png" />
-    <Content Include="Resources\I%27m Happy!.png" />
-    <Content Include="Resources\I%27m Sad...png" />
-    <Content Include="Resources\Need To Talk, Text Me.png" />
+    <Content Include="Resources\I%27m Happy!.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\I%27m Sad...png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Need To Talk, Text Me.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\profilepic.png" />
     <None Include="Resources\Facebook_logo.svg.png" />
   </ItemGroup>

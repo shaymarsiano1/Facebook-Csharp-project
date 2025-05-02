@@ -12,7 +12,6 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Runtime.InteropServices.ComTypes;
 
-
 namespace FacebookWinFormsApp
 {
     public partial class ProfilePanelControl : BasePanelControl
@@ -64,43 +63,12 @@ namespace FacebookWinFormsApp
             flowLayoutPanelProfile.Controls.Add(activityPanel);
         }
 
-        //private void profilePostsBtn_Click(object sender, EventArgs e)
-        //{
-
-        //    flowLayoutPanelProfile.Controls.Clear();
-        //    UserActivity.PostsVisitCount++;
-        //    Thread thread = new Thread(() =>
-        //    {
-        //        List<PersonalPostControl> postControls = new List<PersonalPostControl>();
-        //        foreach (Post post in LoggedInUser.Posts)
-        //        {
-        //            if (post != null && string.IsNullOrEmpty(post.PictureURL) && post.Message != null)
-        //            {
-        //                PersonalPostControl postControl = new PersonalPostControl();
-        //                postControl.SetPost(post);
-        //                postControl.PostClicked += onPostClicked;
-
-        //                postControls.Add(postControl);
-        //            }
-        //        }
-
-        //        flowLayoutPanelProfile.Invoke(new Action(() =>
-        //        {
-        //            flowLayoutPanelProfile.Controls.Clear();
-        //            foreach (var control in postControls)
-        //            {
-        //                flowLayoutPanelProfile.Controls.Add(control);
-        //            }
-        //        }));
-        //    });
-
-        //    thread.Start();
-
-        //}
-
         private void profilePostsBtn_Click(object sender, EventArgs e)
         {
             UserActivity.PostsVisitCount++;
+            IPost postFetcher = new FacebookPostAdapter(LoggedInUser);
+            List<Post> posts = postFetcher.fetchPosts();            
+
             foreach (var post in LoggedInUser.Posts.Where(p => p != null && !string.IsNullOrEmpty(p.Message)))
             {
                 m_PostsList.Add(new SimplePost{Message = post.Message,PictureURL = post.PictureURL,CreatedTime = post.CreatedTime ?? DateTime.Now});
@@ -149,8 +117,9 @@ namespace FacebookWinFormsApp
             if (sender is Button btn)
             {
                 string message = btn.Text.Trim();
-                string pic = @"C:\Users\shaym\OneDrive\שולחן העבודה\.Net Design Patterns\B25 Ex01 ShayMarsiano 318605342 SaharAviad 314685843\FacebookWinFormsApp\Resources\"
-             + message + ".png";
+                string resourcesFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources");
+                string pic = Path.Combine(resourcesFolder, message + ".png");
+
                 m_PostsList.Add(new SimplePost { Message = message, PictureURL = pic, CreatedTime = DateTime.Now });
             }
         }
