@@ -64,11 +64,11 @@ namespace FacebookWinFormsApp
 
         private void profilePostsBtn_Click(object sender, EventArgs e)
         {
-            List<IPost> posts = LoggedInUser.Posts.Select(post => (IPost)new FacebookPostAdapter(post)).ToList();
+            //List<IPost> posts = LoggedInUser.Posts.Select(post => (IPost)new FacebookPostAdapter(post)).ToList();
 
-            foreach (var post in LoggedInUser.Posts.Where(p => p != null && !string.IsNullOrEmpty(p.Message)))
+            foreach (IPost post in FacebookUserSingleton.Instance.AllPosts.Where(p => p != null && !string.IsNullOrEmpty(p.Message)))
             {
-                m_PostsList.Add(new SimplePost{Message = post.Message,PictureURL = post.PictureURL,CreatedTime = post.CreatedTime ?? DateTime.Now});
+                m_PostsList.Add(new SimplePost{Message = post.Message,PictureURL = post.PhotoURL,CreatedTime = post.CreatedTime});
             }
             panel1.Visible = true;
             flowLayoutPanelProfile.Visible = false;
@@ -163,13 +163,7 @@ namespace FacebookWinFormsApp
                 try
                 {
                     List<SerializablePost> importedPosts = SerializablePost.ImportSerializablePosts(openFileDialog.FileName);
-                    foreach (var post in importedPosts.Where(p => p != null && !string.IsNullOrEmpty(p.Message)))
-                    {
-                        m_PostsList.Add(new SimplePost { Message = post.Message, PictureURL = post.PhotoURL, CreatedTime = post.CreatedTime });
-                    }
-                    panel1.Visible = true;
-                    flowLayoutPanelProfile.Visible = false;
-
+                    FacebookUserSingleton.Instance.AllPosts.AddRange(importedPosts);
                     MessageBox.Show("User activity loaded successfully.");
                 }
                 catch (Exception ex)

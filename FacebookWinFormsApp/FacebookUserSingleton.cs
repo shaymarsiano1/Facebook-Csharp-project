@@ -14,7 +14,18 @@ namespace BasicFacebookFeatures
         private static FacebookUserSingleton s_Instance;
         private static readonly object sr_Lock = new object();
 
-        public User LoggedInUser { get; private set; }
+        public List<IPost> AllPosts { get; } = new List<IPost>();
+        private User m_LoggedInUser;
+        public User LoggedInUser
+        {
+            get { return m_LoggedInUser; }
+            private set
+            {
+
+                m_LoggedInUser = value;
+                ReFetchAllPosts();
+            }
+        }
 
         private FacebookUserSingleton()
         {
@@ -37,6 +48,12 @@ namespace BasicFacebookFeatures
 
                 return s_Instance;
             }
+        }
+
+        public void ReFetchAllPosts()
+        {
+            AllPosts.Clear();
+            AllPosts.AddRange(LoggedInUser.Posts.Select(post => new FacebookPostAdapter(post)).ToList());
         }
 
         public void ResetLoggedInUser()

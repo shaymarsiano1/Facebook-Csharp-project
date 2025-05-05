@@ -34,7 +34,7 @@ namespace BasicFacebookFeatures
         {
             ApplicationSource = i_Post.GetType().ToString();
             PostType = i_Post.PostType;
-            Message = i_Post.Message ?? "No Message";
+            Message = i_Post.Message;
             CreatedTime = i_Post.CreatedTime;
             Creator = i_Post.Creator ?? "NONE";
             PhotoURL = i_Post.PhotoURL;
@@ -59,9 +59,8 @@ namespace BasicFacebookFeatures
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<SerializablePost>));
                 xmlSerializer.Serialize(stream, serializablePosts);
             }
-
-
         }
+
         public static List<SerializablePost> ImportSerializablePosts(string i_FileLocation)
         {
             if (!File.Exists(i_FileLocation))
