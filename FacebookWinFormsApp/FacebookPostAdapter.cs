@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FacebookWrapper.ObjectModel;
+﻿using FacebookWrapper.ObjectModel;
+using System;
+using System.Xml.Serialization;
 
 
 namespace BasicFacebookFeatures
 {
+    [Serializable]
+    [XmlRoot("Post")]
     public class FacebookPostAdapter : IPost
     {
-        private User m_LoggedInUser;
+        private readonly Post r_FacebookPost;
 
-        public FacebookPostAdapter(User i_LoggedInUser)
+        public FacebookPostAdapter(Post i_Post)
         {
-            m_LoggedInUser = i_LoggedInUser;
+            r_FacebookPost = i_Post;
         }
 
-        public List<Post> fetchPosts()
-        {
-            return m_LoggedInUser.Posts.ToList();
-        }
+        [XmlAttribute("Type")]
+        public Post.eType PostType => r_FacebookPost.Type ?? Post.eType.status;
+
+        public string Creator => r_FacebookPost.From?.Name ?? "NONE";
+
+        public string PhotoURL => r_FacebookPost.PictureURL;
+
+        public string Message => r_FacebookPost.Message;
+
+        DateTime IPost.CreatedTime => r_FacebookPost.CreatedTime ?? DateTime.MinValue;
     }
+
 }

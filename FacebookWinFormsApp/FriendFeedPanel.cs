@@ -11,21 +11,18 @@ namespace BasicFacebookFeatures
 {
     public partial class FriendFeedPanelControl : BasePanelControl
     {
-        private List<PostControl> AllPosts { get; set; }
+        //private List<PostControl> AllPosts { get; set; }
+
+        //public FriendFeedPanelControl()
+        //{
+        //    InitializeComponent();
+        //    AllPosts = new List<PostControl>();
+        //}
 
         public FriendFeedPanelControl()
         {
             InitializeComponent();
-            AllPosts = new List<PostControl>();
-        }
-
-        public FriendFeedPanelControl(User i_LoggedInUser, UserActivity i_UserActivity)
-        {
-            InitializeComponent();
-            LoggedInUser = i_LoggedInUser;
-            UserActivity = i_UserActivity;
-            AllPosts = new List<PostControl>();
-            if (DesignMode == false)
+            LoggedInUser = FacebookUserSingleton.Instance.LoggedInUser;
             {
                 InitializeData();
             }
@@ -48,15 +45,10 @@ namespace BasicFacebookFeatures
 
         private void loadData()
         {
-            AllPosts.Clear();
-            List<Post> posts = new List<Post>();
-            IPost postFetcher = null;
+            List<PostControl> AllPosts = new List<PostControl>();
             foreach (User friend in LoggedInUser.Friends)
             {
-                postFetcher = new FacebookPostAdapter(friend);
-                posts = postFetcher.fetchPosts();
-
-                foreach (Post post in posts)
+                foreach (Post post in friend.Posts)
                 {
                     if (post != null && post.CreatedTime.HasValue)
                     {
@@ -68,9 +60,8 @@ namespace BasicFacebookFeatures
                     }
                 }
             }
-            postFetcher = new FacebookPostAdapter(LoggedInUser);
-            posts = postFetcher.fetchPosts();
-            foreach (Post post in posts)
+
+            foreach (Post post in LoggedInUser.Posts)
             {
                 if (post != null && post.CreatedTime.HasValue)
                 {
@@ -81,10 +72,9 @@ namespace BasicFacebookFeatures
                     AllPosts.Add(newPost);
                 }
             }
-
             flowLayoutPanelFeed.Invoke(new Action(() =>
             {
-               flowLayoutPanelFeed.Controls.Clear();
+                flowLayoutPanelFeed.Controls.Clear();
                 AllPosts = AllPosts.OrderByDescending(postControl => postControl.Date).ToList();
 
                 foreach (PostControl postControl in AllPosts)
@@ -92,7 +82,7 @@ namespace BasicFacebookFeatures
                     flowLayoutPanelFeed.Controls.Add(postControl);
                 }
             }));
-
         }
+
     }
 }

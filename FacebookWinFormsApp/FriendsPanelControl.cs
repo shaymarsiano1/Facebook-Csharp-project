@@ -12,14 +12,14 @@ namespace BasicFacebookFeatures
             InitializeComponent();
         }
 
-        public void UpdateFriends(User i_LoggedInUser)
+        public void UpdateFriends()
         {
             try
             {
                 listBoxFriends.Items.Clear();
                 listBoxFriends.DisplayMember = "Name";
                 listBoxFriends.MouseDoubleClick += listBoxFriends_Click;
-                foreach (User friend in i_LoggedInUser.Friends)
+                foreach (User friend in LoggedInUser.Friends)
                 {
                     listBoxFriends.Items.Add(friend);
                 }
@@ -39,7 +39,7 @@ namespace BasicFacebookFeatures
 
                 if (selectedFriend != null)
                 {
-                    FacebookApp facebookApp = new FacebookApp(selectedFriend);
+                    FacebookApp facebookApp = new FacebookApp();
                     ownerObjectBindingSource.DataSource = selectedFriend;
                 }
             }

@@ -1,45 +1,54 @@
 ﻿using System;
 using System.Windows.Forms;
+using FacebookWinFormsApp;
 
 namespace BasicFacebookFeatures
 {
     public partial class UserActivityPanelControl : BasePanelControl
     {
         private Timer m_Timer;
+        Label m_SessionTimeLabel;
 
         public UserActivityPanelControl()
         {
             InitializeComponent();
-            setupTimer();
+            setupTimerLabel();
         }
 
-        private void setupTimer()
+        private void setupTimerLabel()
         {
-            m_Timer = new Timer();
-            m_Timer.Interval = 1000; 
-            m_Timer.Tick += (s, e) => updateDuration();
+            m_SessionTimeLabel = new Label();
+            m_SessionTimeLabel.Dock = DockStyle.Top;
+            m_SessionTimeLabel.AutoSize = true;
+            Controls.Add(m_SessionTimeLabel);
+
         }
 
-        public void LoadUserActivity(UserActivity userActivity)
+        public void LoadUserActivity()
         {
-            if (userActivity == null) return;
 
-            UserActivity = userActivity;
-            labelPhotosCount.Text = $"Photos viewed: {UserActivity.PhotoViewCount}";
-            labelFriendsCount.Text = $"Friends list visits: {UserActivity.FriendsVisitCount}";
-            labelFeedCount.Text = $"Feed visits: {UserActivity.FeedVisitCount}";
-            labelPostCount.Text = $"Personal Posts visits: {UserActivity.PostsVisitCount}";
-            updateDuration(); 
-            m_Timer.Start();
+            foreach (ePanelType panelType in Enum.GetValues(typeof(ePanelType)))
+            {
+                Label label = new Label();
+                label.Text = $"{panelType} Panel Visited: {UserActivity.GetPanelVisitCount(panelType)}";
+                label.Dock = DockStyle.Top;
+                label.AutoSize = true;
+                Controls.Add(label);
+            }
+            updateDuration();
         }
 
         private void updateDuration()
         {
-            if (UserActivity != null)
-            {
-                TimeSpan duration = DateTime.Now - UserActivity.SessionStartTime;
-                labelSessionDuration.Text = $"Session time: {duration:hh\\:mm\\:ss}";
-            }
+
+            TimeSpan duration = DateTime.Now - UserActivity.SessionStartTime;
+            m_SessionTimeLabel.Text = $"Session time: {duration:hh\\:mm\\:ss}";
+
+        }
+
+        private void UpdateTimer_Tick(object sender, EventArgs e)
+        {
+            updateDuration();
         }
     }
 }

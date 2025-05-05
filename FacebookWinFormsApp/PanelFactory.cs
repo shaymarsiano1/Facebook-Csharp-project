@@ -5,20 +5,11 @@ using BasicFacebookFeatures;
 
 namespace FacebookWinFormsApp
 {
-//    public enum ePanelType
-//    {
-//        Profile,
-//        Photos,
-//        FriendFeed,
-//        Friends
-//    }
 
     public static class PanelFactory
     {
         public static BasePanelControl CreatePanel(
             ePanelType i_PanelType,
-            User i_User,
-            UserActivity i_Activity,
             Dictionary<string, Control> io_PanelCache)
         {
             string key = i_PanelType.ToString();
@@ -33,20 +24,20 @@ namespace FacebookWinFormsApp
             switch (i_PanelType)
             {
                 case ePanelType.Profile:
-                    panel = new ProfilePanelControl(i_User, i_Activity);
+                    panel = new ProfilePanelControl();
                     break;
 
                 case ePanelType.Photos:
-                    panel = new AlbumsPanelControl(i_User, i_Activity);
+                    panel = new AlbumsPanelControl();
                     break;
 
                 case ePanelType.FriendFeed:
-                    panel = new FriendFeedPanelControl(i_User, i_Activity);
+                    panel = new FriendFeedPanelControl();
                     break;
 
                 case ePanelType.Friends:
                     FriendsPanelControl friendsPanel = new FriendsPanelControl();
-                    friendsPanel.UpdateFriends(i_User);
+                    friendsPanel.UpdateFriends();
                     panel = friendsPanel;
                     break;
             }

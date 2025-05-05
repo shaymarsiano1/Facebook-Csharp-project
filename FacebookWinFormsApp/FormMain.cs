@@ -37,8 +37,8 @@ namespace BasicFacebookFeatures
                         MessageBox.Show("Auto-login failed. Please login manually.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-
-                    FacebookApp facebookApp = new FacebookApp(m_LoginResult);
+                    FacebookUserSingleton.Instance.SetLoggedInUser(m_LoginResult.LoggedInUser);
+                    FacebookApp facebookApp = new FacebookApp();
                     this.Location = ApplicationSettings.LastWindowLocation;
                     this.Size = ApplicationSettings.LastWindowSize;
                     
@@ -100,8 +100,8 @@ namespace BasicFacebookFeatures
                 pictureBoxProfile.ImageLocation = m_LoginResult.LoggedInUser.PictureNormalURL;
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
-
-                FacebookApp facebookApp = new FacebookApp(m_LoginResult);
+                FacebookUserSingleton.Instance.SetLoggedInUser(m_LoginResult.LoggedInUser);
+                FacebookApp facebookApp = new FacebookApp();
                 facebookApp.Show();
             }
             else

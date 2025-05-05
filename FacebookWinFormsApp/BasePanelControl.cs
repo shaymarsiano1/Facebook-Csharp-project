@@ -16,6 +16,8 @@ namespace BasicFacebookFeatures
 
         public BasePanelControl()
         {
+            LoggedInUser = FacebookUserSingleton.Instance.LoggedInUser;
+            UserActivity = UserActivity.Instance;
             InitializeComponent();
         }
 

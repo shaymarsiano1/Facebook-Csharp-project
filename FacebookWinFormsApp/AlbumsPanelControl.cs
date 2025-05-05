@@ -9,11 +9,10 @@ namespace FacebookWinFormsApp
 {
     public partial class AlbumsPanelControl : BasePanelControl
     {
-        public AlbumsPanelControl(User i_LoggedInUser, UserActivity i_UserActivity)
+        public AlbumsPanelControl()
         {
             InitializeComponent();
-            LoggedInUser = i_LoggedInUser;
-            UserActivity = i_UserActivity;
+            LoggedInUser = FacebookUserSingleton.Instance.LoggedInUser;
             InitializeData();
         }
 
@@ -45,7 +44,6 @@ namespace FacebookWinFormsApp
 
             try
             {
-                UserActivity.PhotoViewCount++;
                 if (LoggedInUser.Albums == null || LoggedInUser.Albums.Count == 0)
                 {
                     Label noAlbumsLabel = new Label

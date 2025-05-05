@@ -18,15 +18,14 @@ namespace FacebookWinFormsApp
     {
         private readonly BindingList<SimplePost> m_PostsList = new BindingList<SimplePost>();
 
-        public ProfilePanelControl(User i_LoggedInUser, UserActivity i_UserActivity)
+        public ProfilePanelControl()
         {
             InitializeComponent();
             panel1.Visible = false;
             postBindingSource.DataSource = m_PostsList;
-
-            LoggedInUser = i_LoggedInUser;
-            UserActivity = i_UserActivity;
-            LoadUserProfile(i_LoggedInUser);
+            UserActivity = UserActivity.Instance;
+            LoggedInUser = FacebookUserSingleton.Instance.LoggedInUser;
+            LoadUserProfile(LoggedInUser);
         }
 
         public void LoadUserProfile(User i_LoggedInUser)
@@ -59,15 +58,13 @@ namespace FacebookWinFormsApp
             flowLayoutPanelProfile.Controls.Clear();
             UserActivityPanelControl activityPanel = new UserActivityPanelControl();
             activityPanel.SetContext(LoggedInUser, UserActivity, UserPreferences);
-            activityPanel.LoadUserActivity(UserActivity);
+            activityPanel.LoadUserActivity();
             flowLayoutPanelProfile.Controls.Add(activityPanel);
         }
 
         private void profilePostsBtn_Click(object sender, EventArgs e)
         {
-            UserActivity.PostsVisitCount++;
-            IPost postFetcher = new FacebookPostAdapter(LoggedInUser);
-            List<Post> posts = postFetcher.fetchPosts();            
+            List<Post> posts = LoggedInUser.Posts.ToList();            
 
             foreach (var post in LoggedInUser.Posts.Where(p => p != null && !string.IsNullOrEmpty(p.Message)))
             {
@@ -80,8 +77,6 @@ namespace FacebookWinFormsApp
         private void profilePicturesBtn_Click(object sender, EventArgs e)
         {
             flowLayoutPanelProfile.Controls.Clear();
-            UserActivity.PhotoViewCount++;
-
             Thread thread = new Thread(() =>
             {
                 List<PostControl> pictureControls = new List<PostControl>();

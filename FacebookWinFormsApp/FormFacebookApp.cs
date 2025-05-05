@@ -1,26 +1,25 @@
-﻿using System;
+﻿using BasicFacebookFeatures;
+using FacebookWrapper;
+using FacebookWrapper.ObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BasicFacebookFeatures;
-using FacebookWrapper;
 using Timer = System.Windows.Forms.Timer;
-using FacebookWrapper.ObjectModel;
 
 
 namespace FacebookWinFormsApp
 {
     public partial class FacebookApp : Form
     {
-        private LoginResult LoginResult { get; }
         private User LoggedInUser { get;}
         private UserPreferences UserPreferences { get; }
         private UserActivity UserActivity { get; }
         private Timer RefreshTimer { get; set; }
         private Dictionary<string, Control> Panels { get; set; } = new Dictionary<string, Control>();
 
-        public FacebookApp(User i_LoginUser)
+        public FacebookApp()
         {
-            LoggedInUser = i_LoginUser;
+            LoggedInUser = FacebookUserSingleton.Instance.LoggedInUser;
             UserPreferences = new UserPreferences();
             UserActivity = UserActivity.Instance;
             InitializeComponent();
@@ -35,50 +34,13 @@ namespace FacebookWinFormsApp
             showProfile();
         }
 
-        public FacebookApp(LoginResult i_LoginResult)
-        {
-            LoginResult = i_LoginResult;
-            LoggedInUser = i_LoginResult.LoggedInUser;
-            UserPreferences = new UserPreferences();
-            UserActivity = UserActivity.Instance;
-            InitializeComponent();
-            RefreshTimer = new Timer();
-            applyUserPreferences();
-            userInfoPanelControl21.LoadUserInfo(LoggedInUser);
-            navigationPanelControl.PanelButtonClicked += handlePanelButtonClicked;
-            navigationPanelControl.SettingsButtonClicked += navigationPanel_SettingsButtonClicked;
-
-
-            showProfile();
-        }
 
         private void handlePanelButtonClicked(object sender, PanelEventArgs e)
         {
-            BasePanelControl panel = PanelFactory.CreatePanel(e.PanelType, LoggedInUser, UserActivity, Panels);
+            BasePanelControl panel = PanelFactory.CreatePanel(e.PanelType, Panels);
 
-            if (panel is AlbumsPanelControl albumsPanel)
-            {
-                UserActivity.PhotoViewCount++;
-                albumsPanel.InitializeData();
-            }
-            else if (panel is FriendFeedPanelControl feedPanel)
-            {
-                UserActivity.FeedVisitCount++;
-                feedPanel.InitializeData();
-            }
-            else if (panel is FriendsPanelControl friendsPanel)
-            {
-                UserActivity.FriendsVisitCount++;
-                friendsPanel.InitializeData();
-            }
-            else if (panel is ProfilePanelControl profilePanel)
-            {
-                profilePanel.InitializeData();
-            }
-            else
-            {
-                throw new Exception("no such panel exists");
-            }
+            panel.InitializeData();
+            UserActivity.UpdateActivity(e.PanelType);
 
             basePanel.Controls.Clear();
             basePanel.Controls.Add(panel);
@@ -97,7 +59,7 @@ namespace FacebookWinFormsApp
        
         private void showProfile()
         {
-            ProfilePanelControl profilePanel = PanelFactory.CreatePanel(ePanelType.Profile, LoggedInUser, UserActivity, Panels) as ProfilePanelControl;
+            ProfilePanelControl profilePanel = PanelFactory.CreatePanel(ePanelType.Profile, Panels) as ProfilePanelControl;
 
             basePanel.Controls.Clear();
             basePanel.Controls.Add(profilePanel);

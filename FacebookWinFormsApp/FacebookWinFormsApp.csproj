@@ -91,6 +91,7 @@
       <DependentUpon>BasePanelControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FacebookPostAdapter.cs" />
+    <Compile Include="FacebookUserSingleton.cs" />
     <Compile Include="FriendFeedPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -119,6 +120,7 @@
     <Compile Include="PostControl.Designer.cs">
       <DependentUpon>PostControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SerializablePost.cs" />
     <Compile Include="SimplePost.cs" />
     <Compile Include="UserActivity.cs" />
     <Compile Include="ProfilePanelControl.cs">
