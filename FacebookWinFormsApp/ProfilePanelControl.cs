@@ -64,7 +64,7 @@ namespace FacebookWinFormsApp
 
         private void profilePostsBtn_Click(object sender, EventArgs e)
         {
-            List<Post> posts = LoggedInUser.Posts.ToList();            
+            List<IPost> posts = LoggedInUser.Posts.Select(post => (IPost)new FacebookPostAdapter(post)).ToList();
 
             foreach (var post in LoggedInUser.Posts.Where(p => p != null && !string.IsNullOrEmpty(p.Message)))
             {
@@ -118,33 +118,9 @@ namespace FacebookWinFormsApp
                 m_PostsList.Add(new SimplePost { Message = message, PictureURL = pic, CreatedTime = DateTime.Now });
             }
         }
-        [Serializable]
-        [XmlRoot("Post")]
-        public class SerializablePost
-        {
-            [XmlAttribute("Type")]
-            public Post.eType postType { get; set; }
-            [XmlElement("Message")]
-            public string message { get; set; }
+       
 
-            public string Creator { get; set; }
-            public DateTime CreatedTime { get; set; }
-            public string PhotoURL { get; set; }
-
-            public SerializablePost() { }
-
-            public SerializablePost(Post external)
-            {
-                postType = external.Type.Value;
-                message = external.Message;
-                CreatedTime = external.CreatedTime.Value;
-                Creator = external.From?.Name ?? "NONE";
-                PhotoURL = external.PictureURL;
-
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void exportPostsBtn_Click(object sender, EventArgs e)
         {
             if (LoggedInUser.Posts == null || LoggedInUser.Posts.Count == 0)
             {
@@ -163,22 +139,8 @@ namespace FacebookWinFormsApp
             {
                 try
                 {
-                    List<SerializablePost> serializablePosts = LoggedInUser.Posts
-                        .Select(post => new SerializablePost(post))
-                        .ToList();
 
-                    foreach (User friend in LoggedInUser.Friends)
-                    {
-                        serializablePosts.AddRange(friend.Posts
-                            .Select(post => new SerializablePost(post)));
-                    }
-
-                    using (Stream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
-                    {
-                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<SerializablePost>));
-                        xmlSerializer.Serialize(stream, serializablePosts);
-                    }
-
+                    SerializablePost.ExportSerializablePosts(saveFileDialog.FileName);
                     MessageBox.Show("User activity saved successfully.");
                 }
                 catch (Exception ex)
@@ -188,5 +150,33 @@ namespace FacebookWinFormsApp
             }
         }
 
+        private void importPostsBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*",
+                Title = "Open Posts"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    List<SerializablePost> importedPosts = SerializablePost.ImportSerializablePosts(openFileDialog.FileName);
+                    foreach (var post in importedPosts.Where(p => p != null && !string.IsNullOrEmpty(p.Message)))
+                    {
+                        m_PostsList.Add(new SimplePost { Message = post.Message, PictureURL = post.PhotoURL, CreatedTime = post.CreatedTime });
+                    }
+                    panel1.Visible = true;
+                    flowLayoutPanelProfile.Visible = false;
+
+                    MessageBox.Show("User activity loaded successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading user activity: {ex.Message}");
+                }
+            }
+        }
     }
 }

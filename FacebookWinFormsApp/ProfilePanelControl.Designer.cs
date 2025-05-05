@@ -42,6 +42,7 @@ namespace FacebookWinFormsApp
             this.flowLayoutPanelProfile = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.exportPostsBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.talkPostBtn = new System.Windows.Forms.Button();
             this.happyPostBtn = new System.Windows.Forms.Button();
@@ -53,8 +54,8 @@ namespace FacebookWinFormsApp
             this.profilePicturesBtn = new System.Windows.Forms.Button();
             this.profilePostBtn = new System.Windows.Forms.Button();
             this.ProfileTitle = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.importPostsBtn = new System.Windows.Forms.Button();
             createdTimeLabel = new System.Windows.Forms.Label();
             messageLabel = new System.Windows.Forms.Label();
             pictureURLLabel = new System.Windows.Forms.Label();
@@ -145,7 +146,8 @@ namespace FacebookWinFormsApp
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.importPostsBtn);
+            this.panel1.Controls.Add(this.exportPostsBtn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.talkPostBtn);
             this.panel1.Controls.Add(this.happyPostBtn);
@@ -158,6 +160,16 @@ namespace FacebookWinFormsApp
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(594, 258);
             this.panel1.TabIndex = 1;
+            // 
+            // exportPostsBtn
+            // 
+            this.exportPostsBtn.Location = new System.Drawing.Point(460, 169);
+            this.exportPostsBtn.Name = "exportPostsBtn";
+            this.exportPostsBtn.Size = new System.Drawing.Size(113, 32);
+            this.exportPostsBtn.TabIndex = 27;
+            this.exportPostsBtn.Text = "Export my posts";
+            this.exportPostsBtn.UseVisualStyleBackColor = true;
+            this.exportPostsBtn.Click += new System.EventHandler(this.exportPostsBtn_Click);
             // 
             // label1
             // 
@@ -269,15 +281,15 @@ namespace FacebookWinFormsApp
             this.ProfileTitle.TabIndex = 1;
             this.ProfileTitle.Text = "My Profile";
             // 
-            // button1
+            // importPostsBtn
             // 
-            this.button1.Location = new System.Drawing.Point(460, 169);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 32);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "Export my posts";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.importPostsBtn.Location = new System.Drawing.Point(458, 207);
+            this.importPostsBtn.Name = "importPostsBtn";
+            this.importPostsBtn.Size = new System.Drawing.Size(113, 32);
+            this.importPostsBtn.TabIndex = 28;
+            this.importPostsBtn.Text = "Import posts";
+            this.importPostsBtn.UseVisualStyleBackColor = true;
+            this.importPostsBtn.Click += new System.EventHandler(this.importPostsBtn_Click);
             // 
             // ProfilePanelControl
             // 
@@ -326,7 +338,8 @@ namespace FacebookWinFormsApp
         private Button talkPostBtn;
         private Button happyPostBtn;
         private Button sadPostBtn;
-        private Button button1;
+        private Button exportPostsBtn;
         private SaveFileDialog saveFileDialog1;
+        private Button importPostsBtn;
     }
 }

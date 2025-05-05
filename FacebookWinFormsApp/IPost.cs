@@ -11,7 +11,7 @@ namespace BasicFacebookFeatures
         Post.eType PostType { get; }
         string Message { get; }
         string Creator { get; }
-        DateTime CreatedTime { get; }
-        string PhotoURL { get; }
+        DateTime CreatedTime { get;  }
+        string PhotoURL { get;  }
     }
 }

@@ -6,7 +6,6 @@ namespace BasicFacebookFeatures
 {
     public partial class UserActivityPanelControl : BasePanelControl
     {
-        private Timer m_Timer;
         Label m_SessionTimeLabel;
 
         public UserActivityPanelControl()
