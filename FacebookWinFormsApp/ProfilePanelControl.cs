@@ -16,13 +16,13 @@ namespace FacebookWinFormsApp
 {
     public partial class ProfilePanelControl : BasePanelControl
     {
-        private readonly BindingList<SimplePost> m_PostsList = new BindingList<SimplePost>();
+        private readonly BindingList<IPost> m_PostsList = new BindingList<IPost>();
 
         public ProfilePanelControl()
         {
             InitializeComponent();
             panel1.Visible = false;
-            postBindingSource.DataSource = m_PostsList;
+            allPostsBindingSource.DataSource = m_PostsList;
             UserActivity = UserActivity.Instance;
             LoggedInUser = FacebookUserSingleton.Instance.LoggedInUser;
             LoadUserProfile(LoggedInUser);
@@ -64,11 +64,15 @@ namespace FacebookWinFormsApp
 
         private void profilePostsBtn_Click(object sender, EventArgs e)
         {
-            //List<IPost> posts = LoggedInUser.Posts.Select(post => (IPost)new FacebookPostAdapter(post)).ToList();
+            refreshPosts();
+        }
 
+        private void refreshPosts()
+        {
+            m_PostsList.Clear();
             foreach (IPost post in FacebookUserSingleton.Instance.AllPosts.Where(p => p != null && !string.IsNullOrEmpty(p.Message)))
             {
-                m_PostsList.Add(new SimplePost{Message = post.Message,PictureURL = post.PhotoURL,CreatedTime = post.CreatedTime});
+                m_PostsList.Add(post);
             }
             panel1.Visible = true;
             flowLayoutPanelProfile.Visible = false;
@@ -114,8 +118,8 @@ namespace FacebookWinFormsApp
                 string message = btn.Text.Trim();
                 string resourcesFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources");
                 string pic = Path.Combine(resourcesFolder, message + ".png");
-
-                m_PostsList.Add(new SimplePost { Message = message, PictureURL = pic, CreatedTime = DateTime.Now });
+                FacebookUserSingleton.Instance.AllPosts.Add(new SerializablePost { Message = message, PictureURL = pic, CreatedTime = DateTime.Now,Creator = LoggedInUser.Name,PostType = Post.eType.status });
+                refreshPosts();
             }
         }
        
@@ -165,6 +169,7 @@ namespace FacebookWinFormsApp
                     List<SerializablePost> importedPosts = SerializablePost.ImportSerializablePosts(openFileDialog.FileName);
                     FacebookUserSingleton.Instance.AllPosts.AddRange(importedPosts);
                     MessageBox.Show("User activity loaded successfully.");
+                    refreshPosts();
                 }
                 catch (Exception ex)
                 {
@@ -172,5 +177,6 @@ namespace FacebookWinFormsApp
                 }
             }
         }
+
     }
 }

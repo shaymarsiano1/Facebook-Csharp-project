@@ -34,7 +34,11 @@ namespace FacebookWinFormsApp
             System.Windows.Forms.Label createdTimeLabel;
             System.Windows.Forms.Label messageLabel;
             System.Windows.Forms.Label pictureURLLabel;
-            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            System.Windows.Forms.Label messageLabel1;
+            System.Windows.Forms.Label postTypeLabel;
+            System.Windows.Forms.Label createdTimeLabel1;
+            System.Windows.Forms.Label pictureURLLabel1;
+            System.Windows.Forms.Label applicationSourceLabel;
             this.postSomethingButton = new System.Windows.Forms.Button();
             this.PostSomethingTextBox = new System.Windows.Forms.TextBox();
             this.postSomethingLabel = new System.Windows.Forms.Label();
@@ -42,27 +46,35 @@ namespace FacebookWinFormsApp
             this.flowLayoutPanelProfile = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureURLPictureBox = new System.Windows.Forms.PictureBox();
+            this.allPostsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.createdTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.postTypeLabel1 = new System.Windows.Forms.Label();
+            this.creatorLabel1 = new System.Windows.Forms.Label();
+            this.importPostsBtn = new System.Windows.Forms.Button();
             this.exportPostsBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.talkPostBtn = new System.Windows.Forms.Button();
             this.happyPostBtn = new System.Windows.Forms.Button();
             this.sadPostBtn = new System.Windows.Forms.Button();
-            this.createdTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.pictureURLPictureBox = new System.Windows.Forms.PictureBox();
             this.messageTextBox = new System.Windows.Forms.TextBox();
             this.listBoxPosts = new System.Windows.Forms.ListBox();
             this.profilePicturesBtn = new System.Windows.Forms.Button();
             this.profilePostBtn = new System.Windows.Forms.Button();
             this.ProfileTitle = new System.Windows.Forms.Label();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.importPostsBtn = new System.Windows.Forms.Button();
+            this.applicationSourceLabel1 = new System.Windows.Forms.Label();
             createdTimeLabel = new System.Windows.Forms.Label();
             messageLabel = new System.Windows.Forms.Label();
             pictureURLLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
+            messageLabel1 = new System.Windows.Forms.Label();
+            postTypeLabel = new System.Windows.Forms.Label();
+            createdTimeLabel1 = new System.Windows.Forms.Label();
+            pictureURLLabel1 = new System.Windows.Forms.Label();
+            applicationSourceLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanelProfile.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureURLPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allPostsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // createdTimeLabel
@@ -89,9 +101,39 @@ namespace FacebookWinFormsApp
             pictureURLLabel.Size = new System.Drawing.Size(0, 13);
             pictureURLLabel.TabIndex = 15;
             // 
-            // postBindingSource
+            // messageLabel1
             // 
-            this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
+            messageLabel1.AutoSize = true;
+            messageLabel1.Location = new System.Drawing.Point(316, 115);
+            messageLabel1.Name = "messageLabel1";
+            messageLabel1.Size = new System.Drawing.Size(53, 13);
+            messageLabel1.TabIndex = 29;
+            messageLabel1.Text = "Message:";
+            // 
+            // postTypeLabel
+            // 
+            postTypeLabel.AutoSize = true;
+            postTypeLabel.Location = new System.Drawing.Point(221, 198);
+            postTypeLabel.Name = "postTypeLabel";
+            postTypeLabel.Size = new System.Drawing.Size(58, 13);
+            postTypeLabel.TabIndex = 31;
+            postTypeLabel.Text = "Post Type:";
+            // 
+            // createdTimeLabel1
+            // 
+            createdTimeLabel1.AutoSize = true;
+            createdTimeLabel1.Location = new System.Drawing.Point(145, 219);
+            createdTimeLabel1.Name = "createdTimeLabel1";
+            createdTimeLabel1.Size = new System.Drawing.Size(73, 13);
+            createdTimeLabel1.TabIndex = 32;
+            createdTimeLabel1.Text = "Created Time:";
+            // 
+            // pictureURLLabel1
+            // 
+            pictureURLLabel1.Location = new System.Drawing.Point(0, 0);
+            pictureURLLabel1.Name = "pictureURLLabel1";
+            pictureURLLabel1.Size = new System.Drawing.Size(100, 23);
+            pictureURLLabel1.TabIndex = 0;
             // 
             // postSomethingButton
             // 
@@ -146,29 +188,95 @@ namespace FacebookWinFormsApp
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(applicationSourceLabel);
+            this.panel1.Controls.Add(this.applicationSourceLabel1);
+            this.panel1.Controls.Add(pictureURLLabel1);
+            this.panel1.Controls.Add(this.pictureURLPictureBox);
+            this.panel1.Controls.Add(createdTimeLabel1);
+            this.panel1.Controls.Add(this.createdTimeDateTimePicker);
+            this.panel1.Controls.Add(postTypeLabel);
+            this.panel1.Controls.Add(this.postTypeLabel1);
+            this.panel1.Controls.Add(this.creatorLabel1);
+            this.panel1.Controls.Add(messageLabel1);
             this.panel1.Controls.Add(this.importPostsBtn);
             this.panel1.Controls.Add(this.exportPostsBtn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.talkPostBtn);
             this.panel1.Controls.Add(this.happyPostBtn);
             this.panel1.Controls.Add(this.sadPostBtn);
-            this.panel1.Controls.Add(this.createdTimeDateTimePicker);
-            this.panel1.Controls.Add(this.pictureURLPictureBox);
             this.panel1.Controls.Add(this.messageTextBox);
             this.panel1.Controls.Add(this.listBoxPosts);
             this.panel1.Location = new System.Drawing.Point(3, 102);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(594, 258);
+            this.panel1.Size = new System.Drawing.Size(649, 268);
             this.panel1.TabIndex = 1;
+            // 
+            // pictureURLPictureBox
+            // 
+            this.pictureURLPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("ImageLocation", this.allPostsBindingSource, "PictureURL", true));
+            this.pictureURLPictureBox.Location = new System.Drawing.Point(104, 119);
+            this.pictureURLPictureBox.Name = "pictureURLPictureBox";
+            this.pictureURLPictureBox.Size = new System.Drawing.Size(111, 97);
+            this.pictureURLPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureURLPictureBox.TabIndex = 34;
+            this.pictureURLPictureBox.TabStop = false;
+            // 
+            // allPostsBindingSource
+            // 
+            this.allPostsBindingSource.AllowNew = true;
+            this.allPostsBindingSource.DataSource = typeof(BasicFacebookFeatures.IPost);
+            // 
+            // createdTimeDateTimePicker
+            // 
+            this.createdTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.allPostsBindingSource, "CreatedTime", true));
+            this.createdTimeDateTimePicker.Enabled = false;
+            this.createdTimeDateTimePicker.Location = new System.Drawing.Point(224, 214);
+            this.createdTimeDateTimePicker.Name = "createdTimeDateTimePicker";
+            this.createdTimeDateTimePicker.Size = new System.Drawing.Size(180, 20);
+            this.createdTimeDateTimePicker.TabIndex = 33;
+            // 
+            // postTypeLabel1
+            // 
+            this.postTypeLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.allPostsBindingSource, "PostType", true));
+            this.postTypeLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.postTypeLabel1.Location = new System.Drawing.Point(326, 197);
+            this.postTypeLabel1.Name = "postTypeLabel1";
+            this.postTypeLabel1.Size = new System.Drawing.Size(100, 23);
+            this.postTypeLabel1.TabIndex = 32;
+            this.postTypeLabel1.Text = "label2";
+            // 
+            // creatorLabel1
+            // 
+            this.creatorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.allPostsBindingSource, "Creator", true));
+            this.creatorLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.creatorLabel1.Location = new System.Drawing.Point(221, 115);
+            this.creatorLabel1.Name = "creatorLabel1";
+            this.creatorLabel1.Size = new System.Drawing.Size(80, 13);
+            this.creatorLabel1.TabIndex = 30;
+            this.creatorLabel1.Text = "label2";
+            // 
+            // importPostsBtn
+            // 
+            this.importPostsBtn.BackColor = System.Drawing.Color.DarkRed;
+            this.importPostsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.importPostsBtn.Location = new System.Drawing.Point(460, 193);
+            this.importPostsBtn.Name = "importPostsBtn";
+            this.importPostsBtn.Size = new System.Drawing.Size(113, 32);
+            this.importPostsBtn.TabIndex = 28;
+            this.importPostsBtn.Text = "Import posts";
+            this.importPostsBtn.UseVisualStyleBackColor = false;
+            this.importPostsBtn.Click += new System.EventHandler(this.importPostsBtn_Click);
             // 
             // exportPostsBtn
             // 
-            this.exportPostsBtn.Location = new System.Drawing.Point(460, 169);
+            this.exportPostsBtn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.exportPostsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.exportPostsBtn.Location = new System.Drawing.Point(460, 155);
             this.exportPostsBtn.Name = "exportPostsBtn";
             this.exportPostsBtn.Size = new System.Drawing.Size(113, 32);
             this.exportPostsBtn.TabIndex = 27;
             this.exportPostsBtn.Text = "Export my posts";
-            this.exportPostsBtn.UseVisualStyleBackColor = true;
+            this.exportPostsBtn.UseVisualStyleBackColor = false;
             this.exportPostsBtn.Click += new System.EventHandler(this.exportPostsBtn_Click);
             // 
             // label1
@@ -183,54 +291,39 @@ namespace FacebookWinFormsApp
             // 
             // talkPostBtn
             // 
+            this.talkPostBtn.BackColor = System.Drawing.Color.Khaki;
             this.talkPostBtn.Location = new System.Drawing.Point(440, 107);
             this.talkPostBtn.Name = "talkPostBtn";
             this.talkPostBtn.Size = new System.Drawing.Size(133, 28);
             this.talkPostBtn.TabIndex = 25;
             this.talkPostBtn.Text = "Need To Talk, Text Me";
-            this.talkPostBtn.UseVisualStyleBackColor = true;
+            this.talkPostBtn.UseVisualStyleBackColor = false;
             // 
             // happyPostBtn
             // 
+            this.happyPostBtn.BackColor = System.Drawing.Color.Green;
             this.happyPostBtn.Location = new System.Drawing.Point(440, 73);
             this.happyPostBtn.Name = "happyPostBtn";
             this.happyPostBtn.Size = new System.Drawing.Size(90, 28);
             this.happyPostBtn.TabIndex = 24;
             this.happyPostBtn.Text = "I\'m Happy!";
-            this.happyPostBtn.UseVisualStyleBackColor = true;
+            this.happyPostBtn.UseVisualStyleBackColor = false;
             // 
             // sadPostBtn
             // 
+            this.sadPostBtn.BackColor = System.Drawing.Color.Red;
             this.sadPostBtn.Location = new System.Drawing.Point(439, 38);
             this.sadPostBtn.Name = "sadPostBtn";
             this.sadPostBtn.Size = new System.Drawing.Size(91, 28);
             this.sadPostBtn.TabIndex = 23;
             this.sadPostBtn.Text = "I\'m Sad..";
-            this.sadPostBtn.UseVisualStyleBackColor = true;
-            // 
-            // createdTimeDateTimePicker
-            // 
-            this.createdTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.postBindingSource, "CreatedTime", true));
-            this.createdTimeDateTimePicker.Location = new System.Drawing.Point(212, 194);
-            this.createdTimeDateTimePicker.Name = "createdTimeDateTimePicker";
-            this.createdTimeDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.createdTimeDateTimePicker.TabIndex = 1;
-            // 
-            // pictureURLPictureBox
-            // 
-            this.pictureURLPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("ImageLocation", this.postBindingSource, "PictureURL", true));
-            this.pictureURLPictureBox.Location = new System.Drawing.Point(104, 125);
-            this.pictureURLPictureBox.Name = "pictureURLPictureBox";
-            this.pictureURLPictureBox.Size = new System.Drawing.Size(98, 91);
-            this.pictureURLPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureURLPictureBox.TabIndex = 5;
-            this.pictureURLPictureBox.TabStop = false;
+            this.sadPostBtn.UseVisualStyleBackColor = false;
             // 
             // messageTextBox
             // 
             this.messageTextBox.AllowDrop = true;
-            this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Message", true));
-            this.messageTextBox.Location = new System.Drawing.Point(225, 125);
+            this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.allPostsBindingSource, "Message", true));
+            this.messageTextBox.Location = new System.Drawing.Point(224, 131);
             this.messageTextBox.Multiline = true;
             this.messageTextBox.Name = "messageTextBox";
             this.messageTextBox.Size = new System.Drawing.Size(187, 40);
@@ -238,15 +331,15 @@ namespace FacebookWinFormsApp
             // 
             // listBoxPosts
             // 
-            this.listBoxPosts.DataSource = this.postBindingSource;
+            this.listBoxPosts.DataSource = this.allPostsBindingSource;
             this.listBoxPosts.DisplayMember = "Message";
             this.listBoxPosts.FormattingEnabled = true;
             this.listBoxPosts.HorizontalScrollbar = true;
             this.listBoxPosts.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.listBoxPosts.Location = new System.Drawing.Point(104, 11);
+            this.listBoxPosts.Location = new System.Drawing.Point(103, 3);
             this.listBoxPosts.Name = "listBoxPosts";
             this.listBoxPosts.ScrollAlwaysVisible = true;
-            this.listBoxPosts.Size = new System.Drawing.Size(308, 95);
+            this.listBoxPosts.Size = new System.Drawing.Size(308, 108);
             this.listBoxPosts.TabIndex = 21;
             this.listBoxPosts.ValueMember = "Caption";
             // 
@@ -281,15 +374,24 @@ namespace FacebookWinFormsApp
             this.ProfileTitle.TabIndex = 1;
             this.ProfileTitle.Text = "My Profile";
             // 
-            // importPostsBtn
+            // applicationSourceLabel
             // 
-            this.importPostsBtn.Location = new System.Drawing.Point(458, 207);
-            this.importPostsBtn.Name = "importPostsBtn";
-            this.importPostsBtn.Size = new System.Drawing.Size(113, 32);
-            this.importPostsBtn.TabIndex = 28;
-            this.importPostsBtn.Text = "Import posts";
-            this.importPostsBtn.UseVisualStyleBackColor = true;
-            this.importPostsBtn.Click += new System.EventHandler(this.importPostsBtn_Click);
+            applicationSourceLabel.AutoSize = true;
+            applicationSourceLabel.Location = new System.Drawing.Point(221, 174);
+            applicationSourceLabel.Name = "applicationSourceLabel";
+            applicationSourceLabel.Size = new System.Drawing.Size(99, 13);
+            applicationSourceLabel.TabIndex = 34;
+            applicationSourceLabel.Text = "Application Source:";
+            // 
+            // applicationSourceLabel1
+            // 
+            this.applicationSourceLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.allPostsBindingSource, "ApplicationSource", true));
+            this.applicationSourceLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.applicationSourceLabel1.Location = new System.Drawing.Point(326, 174);
+            this.applicationSourceLabel1.Name = "applicationSourceLabel1";
+            this.applicationSourceLabel1.Size = new System.Drawing.Size(73, 23);
+            this.applicationSourceLabel1.TabIndex = 35;
+            this.applicationSourceLabel1.Text = "label2";
             // 
             // ProfilePanelControl
             // 
@@ -307,12 +409,12 @@ namespace FacebookWinFormsApp
             this.Controls.Add(this.profilePostBtn);
             this.Controls.Add(this.ProfileTitle);
             this.Name = "ProfilePanelControl";
-            this.Size = new System.Drawing.Size(597, 370);
-            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
+            this.Size = new System.Drawing.Size(652, 370);
             this.flowLayoutPanelProfile.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureURLPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allPostsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,18 +430,20 @@ namespace FacebookWinFormsApp
         private System.Windows.Forms.Label postSomethingLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelProfile;
-        private System.Windows.Forms.BindingSource postBindingSource;
         private Panel panel1;
         private ListBox listBoxPosts;
-        private DateTimePicker createdTimeDateTimePicker;
         private TextBox messageTextBox;
-        private PictureBox pictureURLPictureBox;
         private Label label1;
         private Button talkPostBtn;
         private Button happyPostBtn;
         private Button sadPostBtn;
         private Button exportPostsBtn;
-        private SaveFileDialog saveFileDialog1;
         private Button importPostsBtn;
+        private BindingSource allPostsBindingSource;
+        private Label creatorLabel1;
+        private Label postTypeLabel1;
+        private DateTimePicker createdTimeDateTimePicker;
+        private PictureBox pictureURLPictureBox;
+        private Label applicationSourceLabel1;
     }
 }

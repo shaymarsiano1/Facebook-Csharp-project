@@ -38,15 +38,15 @@
             // 
             // basePanel
             // 
-            this.basePanel.Location = new System.Drawing.Point(210, 114);
+            this.basePanel.Location = new System.Drawing.Point(223, 114);
             this.basePanel.Name = "basePanel";
-            this.basePanel.Size = new System.Drawing.Size(588, 331);
+            this.basePanel.Size = new System.Drawing.Size(610, 355);
             this.basePanel.TabIndex = 2;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BasicFacebookFeatures.Properties.Resources.Facebook_logo_svg;
-            this.pictureBox1.Location = new System.Drawing.Point(-1, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(366, 96);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -56,14 +56,14 @@
             // userInfoPanelControl21
             // 
             this.userInfoPanelControl21.BackColor = System.Drawing.SystemColors.Control;
-            this.userInfoPanelControl21.Location = new System.Drawing.Point(371, 12);
+            this.userInfoPanelControl21.Location = new System.Drawing.Point(384, 12);
             this.userInfoPanelControl21.Name = "userInfoPanelControl21";
-            this.userInfoPanelControl21.Size = new System.Drawing.Size(404, 96);
+            this.userInfoPanelControl21.Size = new System.Drawing.Size(449, 96);
             this.userInfoPanelControl21.TabIndex = 3;
             // 
             // navigationPanelControl
             // 
-            this.navigationPanelControl.Location = new System.Drawing.Point(-1, 114);
+            this.navigationPanelControl.Location = new System.Drawing.Point(12, 114);
             this.navigationPanelControl.Name = "navigationPanelControl";
             this.navigationPanelControl.Size = new System.Drawing.Size(205, 333);
             this.navigationPanelControl.TabIndex = 1;
@@ -72,7 +72,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(833, 469);
             this.Controls.Add(this.userInfoPanelControl21);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.basePanel);

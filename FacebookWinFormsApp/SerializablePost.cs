@@ -25,7 +25,7 @@ namespace BasicFacebookFeatures
         [XmlElement("Created Time")]
         public DateTime CreatedTime { get; set; }
         [XmlElement("Photo URL")]
-        public string PhotoURL { get; set; }
+        public string PictureURL { get; set; }
 
 
         public SerializablePost() { }
@@ -37,7 +37,7 @@ namespace BasicFacebookFeatures
             Message = i_Post.Message;
             CreatedTime = i_Post.CreatedTime;
             Creator = i_Post.Creator ?? "NONE";
-            PhotoURL = i_Post.PhotoURL;
+            PictureURL = i_Post.PictureURL;
 
         }
 

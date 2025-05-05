@@ -12,6 +12,7 @@ namespace BasicFacebookFeatures
         string Message { get; }
         string Creator { get; }
         DateTime CreatedTime { get;  }
-        string PhotoURL { get;  }
+        string PictureURL { get;  }
+        string ApplicationSource { get; }
     }
 }

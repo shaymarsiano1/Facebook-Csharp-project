@@ -17,13 +17,15 @@ namespace BasicFacebookFeatures
 
         public Post.eType PostType => r_FacebookPost.Type ?? Post.eType.status;
 
-        public string Creator => r_FacebookPost.From?.Name ?? "NONE";
+        public string Creator => r_FacebookPost.From.Name;
 
-        public string PhotoURL => r_FacebookPost.PictureURL;
+        public string PictureURL => r_FacebookPost.PictureURL;
 
         public string Message => r_FacebookPost.Message;
 
         public DateTime CreatedTime => r_FacebookPost.CreatedTime.Value;
+
+        public string ApplicationSource => typeof(Post).ToString();
     }
 
 }

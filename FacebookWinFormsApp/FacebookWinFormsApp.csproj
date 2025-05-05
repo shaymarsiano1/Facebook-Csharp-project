@@ -121,7 +121,6 @@
       <DependentUpon>PostControl.cs</DependentUpon>
     </Compile>
     <Compile Include="SerializablePost.cs" />
-    <Compile Include="SimplePost.cs" />
     <Compile Include="UserActivity.cs" />
     <Compile Include="ProfilePanelControl.cs">
       <SubType>UserControl</SubType>
@@ -224,6 +223,7 @@
     <EmbeddedResource Include="UserInfoPanelControl.resx">
       <DependentUpon>UserInfoPanelControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\FacebookUserSingleton.datasource" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Event.datasource" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.OwnerObject.datasource" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Post.datasource" />
