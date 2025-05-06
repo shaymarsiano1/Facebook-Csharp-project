@@ -7,8 +7,8 @@ namespace BasicFacebookFeatures
     public partial class PersonalPostControl : UserControl
     {
         public event EventHandler<Post> PostClicked;
-
         private Post m_Post;
+
         public PersonalPostControl()
         {
             InitializeComponent();
@@ -22,6 +22,7 @@ namespace BasicFacebookFeatures
             personalPostText.Text = i_Post.Message ?? "[Empty Post]";
             personalPostDate.Text = i_Post.CreatedTime?.ToString("dd/MM/yyyy HH:mm") ?? "Unknown Date";
         }
+       
         private void attachClickHandlers(Control i_Root)
         {
             i_Root.Click += onAnyControlClicked;

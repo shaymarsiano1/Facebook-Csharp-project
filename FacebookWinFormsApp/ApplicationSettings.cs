@@ -15,8 +15,8 @@ namespace BasicFacebookFeatures
 
         private ApplicationSettings()
         {
-            LastWindowLocation=new Point(20,50);
-            LastWindowSize=new Size(1000,500);
+            LastWindowLocation = new Point(20, 50);
+            LastWindowSize = new Size(1000, 500);
             RememberUser = false;
             LastUserAccessToken = null;
         }

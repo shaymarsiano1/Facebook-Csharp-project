@@ -11,14 +11,6 @@ namespace BasicFacebookFeatures
 {
     public partial class FriendFeedPanelControl : BasePanelControl
     {
-        //private List<PostControl> AllPosts { get; set; }
-
-        //public FriendFeedPanelControl()
-        //{
-        //    InitializeComponent();
-        //    AllPosts = new List<PostControl>();
-        //}
-
         public FriendFeedPanelControl()
         {
             InitializeComponent();
@@ -83,6 +75,5 @@ namespace BasicFacebookFeatures
                 }
             }));
         }
-
     }
 }

@@ -1,5 +1,4 @@
 ﻿using BasicFacebookFeatures;
-using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 using System;
 using System.Collections.Generic;
@@ -30,10 +29,8 @@ namespace FacebookWinFormsApp
             navigationPanelControl.PanelButtonClicked += handlePanelButtonClicked;
             navigationPanelControl.SettingsButtonClicked += navigationPanel_SettingsButtonClicked;
 
-
             showProfile();
         }
-
 
         private void handlePanelButtonClicked(object sender, PanelEventArgs e)
         {
@@ -41,7 +38,6 @@ namespace FacebookWinFormsApp
 
             panel.InitializeData();
             UserActivity.UpdateActivity(e.PanelType);
-
             basePanel.Controls.Clear();
             basePanel.Controls.Add(panel);
         }
@@ -53,8 +49,6 @@ namespace FacebookWinFormsApp
             {
                 applyUserPreferences();
             }
-           
-
         }
        
         private void showProfile()
@@ -67,7 +61,7 @@ namespace FacebookWinFormsApp
 
         private void applyUserPreferences()
         {
-            if (UserPreferences.AutoRefreshFeed)
+            if (UserPreferences.AutoRefreshFeed == true) 
             {
                 RefreshTimer.Interval = UserPreferences.RefreshInterval * 1000; 
                 RefreshTimer.Start();

@@ -21,7 +21,6 @@ namespace BasicFacebookFeatures
             get { return m_LoggedInUser; }
             private set
             {
-
                 m_LoggedInUser = value;
                 ReFetchAllPosts();
             }

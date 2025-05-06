@@ -1,7 +1,6 @@
 ﻿using FacebookWinFormsApp;
 using System;
 using System.Collections.Generic;
-
 public class UserActivity
 {
     private static readonly UserActivity s_Instance = new UserActivity();
@@ -26,17 +25,10 @@ public class UserActivity
         return DateTime.Now - SessionStartTime;
     }
 
-    public int GetPanelVisitCount(ePanelType panelType)
-    {
-        if (m_VisitedPanels.ContainsKey(panelType))
-        {
-            return m_VisitedPanels[panelType];
-        }
-        return 0;
-    }
+    public int GetPanelVisitCount(ePanelType i_PanelType) => m_VisitedPanels.TryGetValue(i_PanelType, out int count) ? count : 0;
 
-    public void UpdateActivity(ePanelType panelType)
+    public void UpdateActivity(ePanelType i_PanelType)
     {
-        m_VisitedPanels[panelType]++;
+        m_VisitedPanels[i_PanelType]++;
     }
 }

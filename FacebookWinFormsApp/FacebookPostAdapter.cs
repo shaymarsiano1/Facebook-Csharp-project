@@ -1,11 +1,9 @@
 ﻿using FacebookWrapper.ObjectModel;
 using System;
-using System.Xml.Serialization;
 
 
 namespace BasicFacebookFeatures
 {
-
     public class FacebookPostAdapter : IPost
     {
         private readonly Post r_FacebookPost;
@@ -27,5 +25,4 @@ namespace BasicFacebookFeatures
 
         public string ApplicationSource => typeof(Post).ToString();
     }
-
 }

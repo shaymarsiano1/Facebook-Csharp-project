@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace BasicFacebookFeatures
@@ -27,7 +24,6 @@ namespace BasicFacebookFeatures
         [XmlElement("Photo URL")]
         public string PictureURL { get; set; }
 
-
         public SerializablePost() { }
 
         public SerializablePost(IPost i_Post)
@@ -38,7 +34,6 @@ namespace BasicFacebookFeatures
             CreatedTime = i_Post.CreatedTime;
             Creator = i_Post.Creator ?? "NONE";
             PictureURL = i_Post.PictureURL;
-
         }
 
         public static void ExportSerializablePosts(string i_FileLocation)
@@ -50,8 +45,7 @@ namespace BasicFacebookFeatures
 
             foreach (User friend in LoggedInUser.Friends)
             {
-                serializablePosts.AddRange(friend.Posts
-                    .Select(post => new SerializablePost(new FacebookPostAdapter(post))));
+                serializablePosts.AddRange(friend.Posts.Select(post => new SerializablePost(new FacebookPostAdapter(post))));
             }
 
             using (Stream stream = new FileStream(i_FileLocation, FileMode.Create))
@@ -74,6 +68,5 @@ namespace BasicFacebookFeatures
                 return (List<SerializablePost>)xmlSerializer.Deserialize(stream);
             }
         }
-
     }
 }

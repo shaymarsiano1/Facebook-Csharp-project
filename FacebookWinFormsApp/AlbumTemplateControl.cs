@@ -36,5 +36,4 @@ namespace BasicFacebookFeatures
             AlbumClicked?.Invoke(this, EventArgs.Empty);
         }
     }
-
 }

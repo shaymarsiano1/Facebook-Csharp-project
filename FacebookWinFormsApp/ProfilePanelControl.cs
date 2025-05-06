@@ -6,11 +6,7 @@ using FacebookWrapper.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
-using BasicFacebookFeatures.Properties;
-using System.Security.Cryptography;
 using System.IO;
-using System.Xml.Serialization;
-using System.Runtime.InteropServices.ComTypes;
 
 namespace FacebookWinFormsApp
 {
@@ -122,7 +118,6 @@ namespace FacebookWinFormsApp
                 refreshPosts();
             }
         }
-       
 
         private void exportPostsBtn_Click(object sender, EventArgs e)
         {
@@ -177,6 +172,5 @@ namespace FacebookWinFormsApp
                 }
             }
         }
-
     }
 }

@@ -1,16 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
-using FacebookWrapper.ObjectModel;
 using BasicFacebookFeatures;
 
 namespace FacebookWinFormsApp
 {
-
     public static class PanelFactory
     {
-        public static BasePanelControl CreatePanel(
-            ePanelType i_PanelType,
-            Dictionary<string, Control> io_PanelCache)
+        public static BasePanelControl CreatePanel(ePanelType i_PanelType, Dictionary<string, Control> io_PanelCache)
         {
             string key = i_PanelType.ToString();
 
