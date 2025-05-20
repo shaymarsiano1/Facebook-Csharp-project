@@ -45,7 +45,7 @@ namespace BasicFacebookFeatures
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error login to friend profile: {ex.Message}");
+                MessageBox.Show($"Error showing friend profile picture: {ex.Message}");
             }
         }
     }

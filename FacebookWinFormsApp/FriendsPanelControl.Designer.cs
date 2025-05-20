@@ -84,7 +84,7 @@
             this.loginToFriendLabel.Name = "loginToFriendLabel";
             this.loginToFriendLabel.Size = new System.Drawing.Size(340, 24);
             this.loginToFriendLabel.TabIndex = 1;
-            this.loginToFriendLabel.Text = "Double click to login as your friend";
+            this.loginToFriendLabel.Text = "Double click to view friend's profile picture";
             // 
             // listBoxFriends
             // 
