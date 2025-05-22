@@ -105,6 +105,8 @@
       <DependentUpon>FriendsPanelControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IPost.cs" />
+    <Compile Include="NavigationActionAttribute.cs" />
+    <Compile Include="NavigationItem.cs" />
     <Compile Include="PanelEventArgs.cs" />
     <Compile Include="PanelFactory.cs" />
     <Compile Include="PanelTypes.cs" />
