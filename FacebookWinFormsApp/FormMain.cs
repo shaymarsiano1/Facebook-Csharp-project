@@ -83,7 +83,7 @@ namespace BasicFacebookFeatures
         private void login()
         {
             m_LoginResult = FacebookService.Login(
-            "1145497437055500",
+            "1146348440870138",
             "email",
             "public_profile",
             "user_posts",
