@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Forms;
 
 namespace FacebookWinFormsApp
 {
@@ -12,51 +11,18 @@ namespace FacebookWinFormsApp
         public event EventHandler<PanelEventArgs> PanelButtonClicked;
         public event EventHandler SettingsButtonClicked;
         private Dictionary<string, NavigationItem> m_NavigationMap;
+        private Menu m_Menu;
 
         public NavigationPanelControl()
         {
             InitializeComponent();
-            loadNavigationMap();
-            //buttonProfile.Click += OnNavigationButtonClick;
-            //buttonPhotos.Click += OnNavigationButtonClick;
-            //buttonFriends.Click += OnNavigationButtonClick;
-            //buttonFriendFeed.Click += OnNavigationButtonClick;
-            //buttonSettings.Click += OnNavigationButtonClick;
-        }
-
-        protected virtual void OnNavigationButtonClick(object sender, EventArgs e)
-        {
-            if (sender is Button button && m_NavigationMap.TryGetValue(button.Text, out NavigationItem item))
-            {
-                item.Selected();
-            }
-            else
-            {
-                MessageBox.Show($"No action found for '{(sender as Button)?.Text}'");
-            }
-        }
-
-        private void loadNavigationMap()
-        {
             List<NavigationItem> items = initializeNavigationItems();
             m_NavigationMap = items.ToDictionary(item => item.Text);
+            m_Menu = new Menu(flowLayoutPanelNavigation);
 
-            foreach (var item in items)
-            {
-                Button button = new Button
-                {
-                    Text = item.Text,
-                    Width = 150,
-                    Height = 40,
-                    Margin = new Padding(5)
-                };
-
-                button.Click += (sender, e) => item.Selected();
-
-                flowLayoutPanelNavigation.Controls.Add(button); 
-            }
+            m_Menu.AddRange(items);
+            m_Menu.BuildUI();
         }
-
 
         private List<NavigationItem> initializeNavigationItems()
         {
@@ -72,14 +38,13 @@ namespace FacebookWinFormsApp
                 .ToList();
         }
 
-
         [NavigationAction("Profile")]
         private void ShowProfilePanel()
         {
             PanelButtonClicked?.Invoke(this, new PanelEventArgs(ePanelType.Profile));
         }
 
-        [NavigationAction("Albums")]
+        [NavigationAction("Photos")]
         private void ShowPhotosPanel()
         {
             PanelButtonClicked?.Invoke(this, new PanelEventArgs(ePanelType.Photos));
@@ -91,7 +56,7 @@ namespace FacebookWinFormsApp
             PanelButtonClicked?.Invoke(this, new PanelEventArgs(ePanelType.Friends));
         }
 
-        [NavigationAction("Feed")]
+        [NavigationAction("Friend Feed")]
         private void ShowFriendFeedPanel()
         {
             PanelButtonClicked?.Invoke(this, new PanelEventArgs(ePanelType.FriendFeed));
@@ -102,6 +67,5 @@ namespace FacebookWinFormsApp
         {
             SettingsButtonClicked?.Invoke(this, EventArgs.Empty);
         }
-
     }
 }

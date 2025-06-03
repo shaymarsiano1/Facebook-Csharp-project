@@ -56,10 +56,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Facebook">
-      <HintPath>..\..\..\..\FBApi\Facebook.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\02_SolutionStarter.V8.0.2.2 (2)\02_SolutionStarter.V8.0.2.2\FBApi\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="FbGraphApiWrapper">
-      <HintPath>..\..\..\..\FBApi\FbGraphApiWrapper.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\02_SolutionStarter.V8.0.2.2 (2)\02_SolutionStarter.V8.0.2.2\FBApi\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
@@ -105,6 +105,7 @@
       <DependentUpon>FriendsPanelControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IPost.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="NavigationActionAttribute.cs" />
     <Compile Include="NavigationItem.cs" />
     <Compile Include="PanelEventArgs.cs" />
