@@ -56,10 +56,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Facebook">
-      <HintPath>..\..\..\..\Downloads\02_SolutionStarter.V8.0.2.2 (2)\02_SolutionStarter.V8.0.2.2\FBApi\Facebook.dll</HintPath>
+      <HintPath>..\..\..\FBApi\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="FbGraphApiWrapper">
-      <HintPath>..\..\..\..\Downloads\02_SolutionStarter.V8.0.2.2 (2)\02_SolutionStarter.V8.0.2.2\FBApi\FbGraphApiWrapper.dll</HintPath>
+      <HintPath>..\..\..\FBApi\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
@@ -83,6 +83,7 @@
     <Compile Include="AlbumTemplateControl.Designer.cs">
       <DependentUpon>AlbumTemplateControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="AllPosts.cs" />
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="BasePanelControl.cs">
       <SubType>UserControl</SubType>
@@ -197,6 +198,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FriendFeedPanel.resx">
       <DependentUpon>FriendFeedPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FriendsPanelControl.resx">
       <DependentUpon>FriendsPanelControl.cs</DependentUpon>
