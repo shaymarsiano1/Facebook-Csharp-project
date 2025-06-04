@@ -1,19 +1,9 @@
 ﻿using FacebookWrapper.ObjectModel;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using System.Diagnostics;
-
-using System;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
-using CefSharp.DevTools.Debugger;
-using System.Runtime.CompilerServices;
-
 
 namespace BasicFacebookFeatures
 {
@@ -65,8 +55,10 @@ namespace BasicFacebookFeatures
             foreach (var postTuple in allPosts.GetAllPosts())
             {
                 if (counter >= 5)
+                {
                     break;
-                if (postTuple != null && postTuple.Item1.Current.CreatedTime.HasValue)
+                }
+                if (postTuple != null && postTuple.Item1.Current.CreatedTime.HasValue) 
                 {
                     PostControl newPost = new PostControl();
                     newPost.Initialize(postTuple.Item2, postTuple.Item1.Current);
@@ -93,7 +85,6 @@ namespace BasicFacebookFeatures
                         flowLayoutPanelFeed.Controls.Add(m_LoadMorePostsBtn);
                     }
                 }));
-
         }
 
         private void addLabelByText(string i_Text)
@@ -114,16 +105,17 @@ namespace BasicFacebookFeatures
             {
                 allPosts.AllFilters.Add((Tuple<IEnumerator<Post>, User> tuple) => Post.eType.photo == tuple.Item1.Current.Type);
             }
+
             if (IsStatus.Checked)
             {
                 allPosts.AllFilters.Add((Tuple<IEnumerator<Post>, User> tuple) => Post.eType.status == tuple.Item1.Current.Type);
             }
+
             if (CreatedByMe.Checked)
             {
                 allPosts.AllFilters.Add((Tuple<IEnumerator<Post>, User> tuple) => LoggedInUser.Name == tuple.Item2.Name);
             }
             loadData();
         }
-
     }
 }
