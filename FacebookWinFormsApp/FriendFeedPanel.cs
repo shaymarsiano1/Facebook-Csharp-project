@@ -9,7 +9,7 @@ namespace BasicFacebookFeatures
 {
     public partial class FriendFeedPanelControl : BasePanelControl
     {
-        AllPosts allPosts;
+        private AllPosts m_AllPosts;
         private int m_PostsCount = 0;
         private Button m_LoadMorePostsBtn;
         public FriendFeedPanelControl()
@@ -40,7 +40,7 @@ namespace BasicFacebookFeatures
 
         private void resetData()
         {
-            allPosts = new AllPosts();
+            m_AllPosts = new AllPosts();
             m_PostsCount = 0;
             flowLayoutPanelFeed.Invoke(new Action(() =>
             {
@@ -52,7 +52,7 @@ namespace BasicFacebookFeatures
         {
             List<PostControl> AllPostsControls = new List<PostControl>();
             int counter = 0;
-            foreach (var postTuple in allPosts.GetAllPosts())
+            foreach (var postTuple in m_AllPosts.GetAllPosts())
             {
                 if (counter >= 5)
                 {
@@ -103,17 +103,17 @@ namespace BasicFacebookFeatures
             resetData();
             if (IsPic.Checked)
             {
-                allPosts.AllFilters.Add((Tuple<IEnumerator<Post>, User> tuple) => Post.eType.photo == tuple.Item1.Current.Type);
+                m_AllPosts.AllFilters.Add((Tuple<IEnumerator<Post>, User> tuple) => Post.eType.photo == tuple.Item1.Current.Type);
             }
 
             if (IsStatus.Checked)
             {
-                allPosts.AllFilters.Add((Tuple<IEnumerator<Post>, User> tuple) => Post.eType.status == tuple.Item1.Current.Type);
+                m_AllPosts.AllFilters.Add((Tuple<IEnumerator<Post>, User> tuple) => Post.eType.status == tuple.Item1.Current.Type);
             }
 
             if (CreatedByMe.Checked)
             {
-                allPosts.AllFilters.Add((Tuple<IEnumerator<Post>, User> tuple) => LoggedInUser.Name == tuple.Item2.Name);
+                m_AllPosts.AllFilters.Add((Tuple<IEnumerator<Post>, User> tuple) => LoggedInUser.Name == tuple.Item2.Name);
             }
             loadData();
         }
